@@ -1,0 +1,290 @@
+Using pre-set license
+Pro License: NO
+
+ COMMAND LINE ARGUMENTS:
+/Applications/Unity/Unity.app/Contents/MacOS/Unity
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+/Users/1706855/Desktop/Deschenes_Jesse_Tp03/DESCHENES_Jesse_Tp03
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+51240
+Successfully changed project path to: /Users/1706855/Desktop/Deschenes_Jesse_Tp03/DESCHENES_Jesse_Tp03
+/Users/1706855/Desktop/Deschenes_Jesse_Tp03/DESCHENES_Jesse_Tp03
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 70.86 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2021.1.13f1 (a03098edbbe0)
+[Subsystems] Discovering subsystems at path /Applications/Unity/Unity.app/Contents/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /Users/1706855/Desktop/Deschenes_Jesse_Tp03/DESCHENES_Jesse_Tp03/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+2022-04-21 10:02:28.623 Unity[31587:318256] iMac preferred device: AMD Radeon Pro 5300 (high power)
+2022-04-21 10:02:28.623 Unity[31587:318256] Metal devices available: 1
+2022-04-21 10:02:28.623 Unity[31587:318256] 0: AMD Radeon Pro 5300 (high power)
+2022-04-21 10:02:28.623 Unity[31587:318256] Using device AMD Radeon Pro 5300 (high power)
+Initializing Metal device caps: AMD Radeon Pro 5300
+Initialize mono
+Mono path[0] = '/Applications/Unity/Unity.app/Contents/Managed'
+Mono path[1] = '/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = '/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56587
+Begin MonoManager ReloadAssembly
+Error scanning for extension ivy.xml files: System.UnauthorizedAccessException: Access to the path '/Applications/Unity/PlaybackEngines/WebGLSupport/BuildTools/Emscripten_Mac/node' is denied.
+  at System.IO.__Error.WinIOError (System.Int32 errorCode, System.String maybeFullPath) [0x00129] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.IO.FileSystemEnumerableIterator`1[TSource].HandleError (System.Int32 hr, System.String path) [0x00006] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.IO.FileSystemEnumerableIterator`1[TSource].AddSearchableDirsToStack (System.IO.Directory+SearchData localSearchData) [0x00053] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.IO.FileSystemEnumerableIterator`1[TSource].MoveNext () [0x0008e] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.Collections.Generic.List`1[T]..ctor (System.Collections.Generic.IEnumerable`1[T] collection) [0x00077] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.IO.Directory.InternalGetFileDirectoryNames (System.String path, System.String userPathOriginal, System.String searchPattern, System.Boolean includeFiles, System.Boolean includeDirs, System.IO.SearchOption searchOption, System.Boolean checkHost) [0x0000f] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.IO.Directory.InternalGetFiles (System.String path, System.String searchPattern, System.IO.SearchOption searchOption) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.IO.Directory.GetFiles (System.String path, System.String searchPattern, System.IO.SearchOption searchOption) [0x00038] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at UnityEditor.Modules.ModuleManager.LoadLegacyExtensionsFromIvyFiles () [0x000a5] in /Users/bokken/buildslave/unity/build/Editor/Mono/Modules/ModuleManager.cs:253 
+Registering precompiled unity dll's ...
+Register platform support module: /Applications/Unity/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: /Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Register platform support module: /Applications/Unity/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.003168 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 66.53 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.360 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2360ms)
+		BeginReloadAssembly (37ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (520ms)
+			LoadAssemblies (39ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (200ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (38ms)
+			SetupLoadedEditorAssemblies (239ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (7ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (67ms)
+				BeforeProcessingInitializeOnLoad (1ms)
+				ProcessInitializeOnLoadAttributes (133ms)
+				ProcessInitializeOnLoadMethodAttributes (30ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.008101 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image /Users/1706855/Desktop/Deschenes_Jesse_Tp03/DESCHENES_Jesse_Tp03/Library/PackageCache/com.unity.visualscripting@1.6.1/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image /Users/1706855/Desktop/Deschenes_Jesse_Tp03/DESCHENES_Jesse_Tp03/Library/PackageCache/com.unity.visualscripting@1.6.1/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.49 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.234 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1234ms)
+		BeginReloadAssembly (163ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (5ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (34ms)
+		EndReloadAssembly (1005ms)
+			LoadAssemblies (105ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (403ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (57ms)
+			SetupLoadedEditorAssemblies (319ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (57ms)
+				ProcessInitializeOnLoadAttributes (250ms)
+				ProcessInitializeOnLoadMethodAttributes (4ms)
+				AfterProcessingInitializeOnLoad (1ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (7ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launching external process: /Applications/Unity/Unity.app/Contents/Tools/UnityShaderCompiler
+Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
+Refreshing native plugins compatible for Editor in 0.49 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2943 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 189.6 MB.
+System memory in use after: 189.8 MB.
+
+Unloading 23 unused Assets to reduce memory usage. Loaded Objects now: 3387.
+Total: 1.985185 ms (FindLiveObjects: 0.217187 ms CreateObjectMapping: 0.122270 ms MarkObjects: 1.566499 ms  DeleteObjects: 0.078479 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  path: Assets/Scenes/Main.unity
+  artifactKey: Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Main.unity using Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f917bada59826856317509966f797449') in 0.009657 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 42.068033 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.fbm
+  artifactKey: Guid(863612026a18749a6b7485f6be578794) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.fbm using Guid(863612026a18749a6b7485f6be578794) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '36b4dba4b65211056fb6d16e899a3728') in 0.001278 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.077297 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1001_Diffuse 1.png
+  artifactKey: Guid(998d65a9742094036a659c73a00865cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1001_Diffuse 1.png using Guid(998d65a9742094036a659c73a00865cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3739b27bbec2435f9c8984dbfd96d658') in 0.796986 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000112 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1002_Emissive 1.png
+  artifactKey: Guid(85089c43a7c5149cb9d1746207cc2fdc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1002_Emissive 1.png using Guid(85089c43a7c5149cb9d1746207cc2fdc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '47cd1d9d4b4d40f4a19556ae9de30f8b') in 0.013683 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000126 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1002_Specular 1.png
+  artifactKey: Guid(6d4d99406a38a4e388d98bddb2b65541) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1002_Specular 1.png using Guid(6d4d99406a38a4e388d98bddb2b65541) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd981e5a1efbbc390df9df09d9eea2e09') in 0.010014 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000115 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1002_Glossiness 1.png
+  artifactKey: Guid(f5ae083c537ec43d4ada1f5c922d1126) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1002_Glossiness 1.png using Guid(f5ae083c537ec43d4ada1f5c922d1126) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '75d56f02cadf56751513b95602cb636e') in 0.010415 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000124 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1001_Glossiness.png
+  artifactKey: Guid(0767587fb759c4a528fe527d039c453e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1001_Glossiness.png using Guid(0767587fb759c4a528fe527d039c453e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '07686c86ec81bd78aeff4d7726c16cf6') in 0.012309 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000152 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1002_Glossiness.png
+  artifactKey: Guid(c0e96e4de0707489cbc0c5982d16a22d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1002_Glossiness.png using Guid(c0e96e4de0707489cbc0c5982d16a22d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b45aea2b41ce6864732f61a1d23b57c6') in 0.010723 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000115 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1002_Normal.png
+  artifactKey: Guid(90612de96f3484f1dafe014edbafd5fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1002_Normal.png using Guid(90612de96f3484f1dafe014edbafd5fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4bac520c313b720acae2f5d3a63121fa') in 0.010571 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000145 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1001_Diffuse.png
+  artifactKey: Guid(7c68cdea997ac42c6b9a2a3a6eeefef5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1001_Diffuse.png using Guid(7c68cdea997ac42c6b9a2a3a6eeefef5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '26cf40f062b89b83b335b50b1cd7a297') in 0.010007 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000116 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1001_Specular.png
+  artifactKey: Guid(52f25517762804bd6acdb1ef90d831af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1001_Specular.png using Guid(52f25517762804bd6acdb1ef90d831af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '96d7d784b996a53e9d2df0268e0e8f3b') in 0.012204 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000144 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1001_Glossiness 1.png
+  artifactKey: Guid(d87cebabb13334ee88b11e058cb7357f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1001_Glossiness 1.png using Guid(d87cebabb13334ee88b11e058cb7357f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2fcb74bf8fcde0fff8a799c35608a9eb') in 0.009787 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000145 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1001_Emissive.png
+  artifactKey: Guid(36435fc8f9b504dcc94bcea3edd81a12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1001_Emissive.png using Guid(36435fc8f9b504dcc94bcea3edd81a12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0cc61a11d646e34caa80bc697246fcae') in 0.010679 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000168 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1002_Diffuse.png
+  artifactKey: Guid(40102a2f12e954b61bf4ec4222e2b88e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1002_Diffuse.png using Guid(40102a2f12e954b61bf4ec4222e2b88e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a9513ee7667d541ce80f79bb2d1f831a') in 0.010110 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000126 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1002_Emissive.png
+  artifactKey: Guid(0faf8c6d2561d434ebff25fb0c190e15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1002_Emissive.png using Guid(0faf8c6d2561d434ebff25fb0c190e15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '454bb90bc251054138999d89444ca2c6') in 0.010024 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000123 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1002_Specular.png
+  artifactKey: Guid(2dacafb069bb54af6aaf395b78f64455) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1002_Specular.png using Guid(2dacafb069bb54af6aaf395b78f64455) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b907ee5c0cbf76a34f359e207242d312') in 0.010789 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000124 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1001_Emissive 1.png
+  artifactKey: Guid(750d1ee9a081b4bed969d6092cc91c17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1001_Emissive 1.png using Guid(750d1ee9a081b4bed969d6092cc91c17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76568d86b34345c7fa9d1233c34060f4') in 0.009854 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000115 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1002_Normal 1.png
+  artifactKey: Guid(6919a1628efda465dabfdf3a764ad520) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1002_Normal 1.png using Guid(6919a1628efda465dabfdf3a764ad520) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cce775b796a97b24917e4ce281ba7ec1') in 0.035844 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000122 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1001_Normal 1.png
+  artifactKey: Guid(75bc3dac5b5874ac18d13e34ac3202a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1001_Normal 1.png using Guid(75bc3dac5b5874ac18d13e34ac3202a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b2d29e4028184ed831d174da69475bbc') in 0.014830 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000116 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1002_Diffuse 1.png
+  artifactKey: Guid(99d98c466392f41ef9a4f85c93aa5e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1002_Diffuse 1.png using Guid(99d98c466392f41ef9a4f85c93aa5e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d98f59a3e800586c6722e7c6a600126') in 0.010437 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000126 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1001_Normal.png
+  artifactKey: Guid(e505e2fb778e14a9b961e3b998c7e5ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1001_Normal.png using Guid(e505e2fb778e14a9b961e3b998c7e5ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f61e894411d8d0a53c8bad8c52cb250a') in 0.012803 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000104 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1001_Specular 1.png
+  artifactKey: Guid(2a511e9d5ec4a41b191fe77e1a9828c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.fbm/Ch44_1001_Specular 1.png using Guid(2a511e9d5ec4a41b191fe77e1a9828c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1d28b8b2d3c7d1d6bed8ee4b1fb953dc') in 0.009730 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 286.980502 seconds.
+  path: Assets/Personnage Joueur/AnimationPJoueur.anim
+  artifactKey: Guid(9a7070d5953cc40f69828c517bfe3991) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/AnimationPJoueur.anim using Guid(9a7070d5953cc40f69828c517bfe3991) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'be0ec010f3bbb31935b3fb5c9e542363') in 0.864300 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.441900 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.controller
+  artifactKey: Guid(d619e14c3cd9442e88d2b2e342c0b9a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.controller using Guid(d619e14c3cd9442e88d2b2e342c0b9a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '672610692dcac0a0c702041b9782ae3c') in 0.256363 seconds 
