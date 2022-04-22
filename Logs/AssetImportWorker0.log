@@ -798,3 +798,255 @@ Received Import Request.
   path: Assets/Personnage Joueur/Ch44_nonPBR.controller
   artifactKey: Guid(d619e14c3cd9442e88d2b2e342c0b9a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Personnage Joueur/Ch44_nonPBR.controller using Guid(d619e14c3cd9442e88d2b2e342c0b9a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e73f1ecafe18fe5e4ba552ad70ce11bb') in 0.026674 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 550.260924 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR@Attack 1.fbx
+  artifactKey: Guid(4c58916a27b39416e8eaafa249c430b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR@Attack 1.fbx using Guid(4c58916a27b39416e8eaafa249c430b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2d0853fc92d33c504ca4dff2414380f8') in 0.022129 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004838 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image /Users/1706855/Desktop/Deschenes_Jesse_Tp03/DESCHENES_Jesse_Tp03/Library/PackageCache/com.unity.visualscripting@1.6.1/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image /Users/1706855/Desktop/Deschenes_Jesse_Tp03/DESCHENES_Jesse_Tp03/Library/PackageCache/com.unity.visualscripting@1.6.1/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.53 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.058 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1059ms)
+		BeginReloadAssembly (109ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (56ms)
+		EndReloadAssembly (889ms)
+			LoadAssemblies (65ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (383ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (46ms)
+			SetupLoadedEditorAssemblies (272ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (40ms)
+				ProcessInitializeOnLoadAttributes (220ms)
+				ProcessInitializeOnLoadMethodAttributes (4ms)
+				AfterProcessingInitializeOnLoad (1ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (7ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.48 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2938 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 200.6 MB.
+System memory in use after: 200.8 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 3417.
+Total: 1.844512 ms (FindLiveObjects: 0.199602 ms CreateObjectMapping: 0.110572 ms MarkObjects: 1.494101 ms  DeleteObjects: 0.039640 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 243.516455 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR@Attack 1.fbx
+  artifactKey: Guid(4c58916a27b39416e8eaafa249c430b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR@Attack 1.fbx using Guid(4c58916a27b39416e8eaafa249c430b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76934cdbc19ba3afc62076715699a5b6') in 0.026340 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 96.935355 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.controller
+  artifactKey: Guid(d619e14c3cd9442e88d2b2e342c0b9a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.controller using Guid(d619e14c3cd9442e88d2b2e342c0b9a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2de9e4e7d9992f757801b88678f7d40') in 0.018274 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003958 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image /Users/1706855/Desktop/Deschenes_Jesse_Tp03/DESCHENES_Jesse_Tp03/Library/PackageCache/com.unity.visualscripting@1.6.1/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image /Users/1706855/Desktop/Deschenes_Jesse_Tp03/DESCHENES_Jesse_Tp03/Library/PackageCache/com.unity.visualscripting@1.6.1/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.49 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.046 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1046ms)
+		BeginReloadAssembly (115ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (62ms)
+		EndReloadAssembly (867ms)
+			LoadAssemblies (66ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (380ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (44ms)
+			SetupLoadedEditorAssemblies (262ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (39ms)
+				ProcessInitializeOnLoadAttributes (212ms)
+				ProcessInitializeOnLoadMethodAttributes (4ms)
+				AfterProcessingInitializeOnLoad (1ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (7ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.46 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2938 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 200.8 MB.
+System memory in use after: 201.0 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 3420.
+Total: 1.932982 ms (FindLiveObjects: 0.247647 ms CreateObjectMapping: 0.139203 ms MarkObjects: 1.506068 ms  DeleteObjects: 0.039256 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 9.207548 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.controller
+  artifactKey: Guid(d619e14c3cd9442e88d2b2e342c0b9a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.controller using Guid(d619e14c3cd9442e88d2b2e342c0b9a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ada6d8a7037937a61f56feb5e602697b') in 0.017654 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002118 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image /Users/1706855/Desktop/Deschenes_Jesse_Tp03/DESCHENES_Jesse_Tp03/Library/PackageCache/com.unity.visualscripting@1.6.1/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image /Users/1706855/Desktop/Deschenes_Jesse_Tp03/DESCHENES_Jesse_Tp03/Library/PackageCache/com.unity.visualscripting@1.6.1/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.49 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.072 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1072ms)
+		BeginReloadAssembly (116ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (5ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (61ms)
+		EndReloadAssembly (891ms)
+			LoadAssemblies (65ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (381ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (46ms)
+			SetupLoadedEditorAssemblies (278ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (42ms)
+				ProcessInitializeOnLoadAttributes (224ms)
+				ProcessInitializeOnLoadMethodAttributes (4ms)
+				AfterProcessingInitializeOnLoad (1ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (7ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.37 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2938 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 201.0 MB.
+System memory in use after: 201.2 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 3423.
+Total: 1.872610 ms (FindLiveObjects: 0.244898 ms CreateObjectMapping: 0.100804 ms MarkObjects: 1.491222 ms  DeleteObjects: 0.034955 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 515.676246 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR@Run.fbx
+  artifactKey: Guid(a20b99ff9c23f4597bcc7d8e684ad077) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR@Run.fbx using Guid(a20b99ff9c23f4597bcc7d8e684ad077) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b4fb240a634939b398a20a3b50360a8b') in 0.028675 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 117.834326 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.controller
+  artifactKey: Guid(d619e14c3cd9442e88d2b2e342c0b9a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.controller using Guid(d619e14c3cd9442e88d2b2e342c0b9a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3460db6cae577c932a5da9d559d793d0') in 0.012211 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 15.419528 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.controller
+  artifactKey: Guid(d619e14c3cd9442e88d2b2e342c0b9a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.controller using Guid(d619e14c3cd9442e88d2b2e342c0b9a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '20fc6128772fcd716d4ff0c66ed5eb10') in 0.009483 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 806.601726 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.controller
+  artifactKey: Guid(d619e14c3cd9442e88d2b2e342c0b9a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.controller using Guid(d619e14c3cd9442e88d2b2e342c0b9a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '10d01de1d6d0afd7e5df58495061cede') in 0.021589 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 514.839962 seconds.
+  path: Assets/Personnage Joueur/Ch44_nonPBR.controller
+  artifactKey: Guid(d619e14c3cd9442e88d2b2e342c0b9a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Ch44_nonPBR.controller using Guid(d619e14c3cd9442e88d2b2e342c0b9a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '52df318f3a20c4793c5e4aa130e1f49a') in 0.010057 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 9.004231 seconds.
+  path: Assets/Personnage Joueur/PlayerAnimation.controller
+  artifactKey: Guid(d619e14c3cd9442e88d2b2e342c0b9a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/PlayerAnimation.controller using Guid(d619e14c3cd9442e88d2b2e342c0b9a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '34527c8740b4011ee7ab6025a393d4e2') in 0.010676 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 559.475254 seconds.
+  path: Assets/Personnage Joueur/PlayerAnimation.controller
+  artifactKey: Guid(d619e14c3cd9442e88d2b2e342c0b9a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/PlayerAnimation.controller using Guid(d619e14c3cd9442e88d2b2e342c0b9a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ff72077b3e08c29bc826f03e0b5307cf') in 0.010403 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 41.535612 seconds.
+  path: Assets/Personnage Joueur/Animations
+  artifactKey: Guid(c7b29849c9c17494e8d1c1b5f5149d21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Personnage Joueur/Animations using Guid(c7b29849c9c17494e8d1c1b5f5149d21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2fc920efea49a10d897bac18ffe9f86') in 0.002098 seconds 
