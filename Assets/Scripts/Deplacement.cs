@@ -9,14 +9,16 @@ public class Deplacement : MonoBehaviour
 
     public float walkSpeed = 1.5f;
     public float runSpeed = 5f;
-    
+
     private float speed = 1f;
 
     private float inputVertical;
     private float inputHorizontal;
 
     private Vector3 moveDirection;
+    private Vector3 rotateDirection;
 
+    private Transform playerDirection;
     private Rigidbody rb;
 
     private Animator playerAnimatior;
@@ -32,6 +34,7 @@ public class Deplacement : MonoBehaviour
         // Assigne l'animator
         playerAnimatior = GetComponent<Animator>();
 
+        playerDirection = GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -43,7 +46,15 @@ public class Deplacement : MonoBehaviour
         // Horizontal
         inputHorizontal = Input.GetAxis("Horizontal");
 
-        //Vecteur de movement (les 4 directions)
+        rotateDirection.x = inputHorizontal;
+        rotateDirection.y = 0f;
+        rotateDirection.z = inputVertical;
+
+
+        playerDirection.forward = Vector3.RotateTowards(transform.forward, rotateDirection, 10f * Time.deltaTime, 0f);
+
+
+        // Vecteur de movement (les 4 directions)
         moveDirection = transform.forward * inputVertical + transform.right * inputHorizontal;
 
         //Animations de mouvements
@@ -59,13 +70,12 @@ public class Deplacement : MonoBehaviour
 
 
 
-
     }
 
     private void FixedUpdate()
     {
         // Déplacer le personnage selon le vecteur de direction
-        rb.MovePosition(rb.position + moveDirection *speed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + rotateDirection * speed * Time.fixedDeltaTime);
     }
 
     private void typeDeplacement(float speedValue, float typeAnimation)
