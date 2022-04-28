@@ -9,8 +9,10 @@ public class CharacterRotation : MonoBehaviour
     public float distance = 1.5f;
     public float elapsticity = 5f;
 
+    public Transform camPivot;
     // Transform que la Caméra tentera de rattraper à chaque frame
     Transform camPositioner;
+
 
     // Pour empêcher la caméra de flippé si la souris va trop vers le haut/bas
     float xAxisClamp = 0f;
@@ -30,7 +32,7 @@ public class CharacterRotation : MonoBehaviour
         camPositioner = new GameObject("Camera parent").transform;
 
         // Assigner son parent
-        camPositioner.parent = transform;
+        camPositioner.parent = camPivot;
 
         // Initialiser sa position et rotation
         camPositioner.localPosition = Vector3.zero;
@@ -68,7 +70,7 @@ public class CharacterRotation : MonoBehaviour
 
         // Rotation du camPositioner et du character
         Vector3 rotCam = camPositioner.rotation.eulerAngles;
-        Vector3 rotPlayer = transform.rotation.eulerAngles;
+        Vector3 rotPlayer = camPivot.rotation.eulerAngles;
 
         // Le positioner tourne en fonction de la position de la souris (x seulement)
         rotCam.x -= mouseY;
@@ -89,7 +91,7 @@ public class CharacterRotation : MonoBehaviour
 
         // Appliquer les rotations
         camPositioner.rotation = Quaternion.Euler(rotCam);
-        transform.rotation = Quaternion.Euler(rotPlayer);
+        camPivot.rotation = Quaternion.Euler(rotPlayer);
     }
 
     /// <summary>
