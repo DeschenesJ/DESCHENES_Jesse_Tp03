@@ -4,13 +4,27 @@ using UnityEngine;
 
 public class TopDown_Camera : MonoBehaviour
 {
+    /// <summary>
+    /// Le code me provient de https://www.youtube.com/c/IndiePixel3D/search?query=unity%20camera
+    /// </summary>
+
     // transform que la camera va suivre
     public Transform playerTarget;
     // les coordonnées de la camera
-    public float camHeight = 10f;
-    public float camDistance = 20f;
-    public float camAngle = 45f;
+    [SerializeField]
+    private float camHeight = 10f;
 
+    [SerializeField]
+    private float camDistance = 20f;
+
+    [SerializeField]
+    private float camAngle = 45f;
+
+    [SerializeField]
+    private float camSmoothSpeed = 0.5f;
+
+
+    private Vector3 refVelocity;
 
 
 
@@ -44,7 +58,8 @@ public class TopDown_Camera : MonoBehaviour
         flatTargetPosition.y = 0f;
         Vector3 finalPosition = flatTargetPosition + rotateVector;
 
-        transform.position = finalPosition;
+        transform.position = Vector3.SmoothDamp(transform.position, finalPosition, ref refVelocity, camSmoothSpeed);
+        transform.LookAt(flatTargetPosition);
 
     }
 }

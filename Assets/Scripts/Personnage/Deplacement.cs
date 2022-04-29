@@ -10,7 +10,7 @@ public class Deplacement : MonoBehaviour
     public float walkSpeed = 1.5f;
     public float runSpeed = 5f;
 
-    private float speed = 1f;
+    private float speed;
     private float lerpSpeed;
     private float speedTarget;
 
@@ -54,6 +54,8 @@ public class Deplacement : MonoBehaviour
 
 
         playerDirection.forward = Vector3.RotateTowards(transform.forward, rotateDirection, 10f * Time.deltaTime, 0f);
+        lerpSpeed = Time.deltaTime * 5f;
+        speed = Mathf.Lerp(speed, speedTarget, lerpSpeed);
 
 
         // Vecteur de movement (les 4 directions)
@@ -69,9 +71,7 @@ public class Deplacement : MonoBehaviour
         {
             typeDeplacement(walkSpeed, 1f);
         }
-        lerpSpeed = Time.deltaTime * 5f;
-        speed = Mathf.Lerp(speed, speedTarget, lerpSpeed);
-
+       
 
     }
 
