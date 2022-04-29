@@ -11,6 +11,8 @@ public class Deplacement : MonoBehaviour
     public float runSpeed = 5f;
 
     private float speed = 1f;
+    private float lerpSpeed;
+    private float speedTarget;
 
     private float inputVertical;
     private float inputHorizontal;
@@ -67,7 +69,8 @@ public class Deplacement : MonoBehaviour
         {
             typeDeplacement(walkSpeed, 1f);
         }
-
+        lerpSpeed = Time.deltaTime * 5f;
+        speed = Mathf.Lerp(speed, speedTarget, lerpSpeed);
 
 
     }
@@ -80,7 +83,7 @@ public class Deplacement : MonoBehaviour
 
     private void typeDeplacement(float speedValue, float typeAnimation)
     {
-        speed = speedValue;
+        speedTarget = speedValue;
         playerAnimatior.SetFloat("Vertical", inputVertical * typeAnimation);
         playerAnimatior.SetFloat("Horizontal", inputHorizontal * typeAnimation);
 

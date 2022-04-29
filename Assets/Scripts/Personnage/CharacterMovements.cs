@@ -8,8 +8,6 @@ public class CharacterMovements : MonoBehaviour
     public float speedRunning = 2.5f;    
     public float jumpHeight = 1f;
 
-    public Transform camPivot;
-
     // Private vars
     float speed;
     float speedTarget;
@@ -27,7 +25,6 @@ public class CharacterMovements : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-
     }
     
     void Update()
@@ -61,19 +58,16 @@ public class CharacterMovements : MonoBehaviour
         // ===================================================
 
         // Déplacements
-        moveDirection = camPivot.forward * vertical;
-        moveDirection += camPivot.right * horizontal;
-
-        if(moveDirection.magnitude > 0.1f)
-            transform.forward = Vector3.RotateTowards(transform.forward, moveDirection, 10f * Time.deltaTime, 0f);
+        moveDirection = transform.forward * vertical;
+        moveDirection += transform.right * horizontal;
 
         // ------------------------------------------------------------
 
         // Jump -------------------------------------------------------
-        //if (Input.GetButtonDown("Jump") && isGrounded)
-        //{            
-        //    Jump();            
-        // }
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {            
+            Jump();            
+        }
 
         // Respawn ------------------------------------------------
         if (transform.position.y < -15f)
