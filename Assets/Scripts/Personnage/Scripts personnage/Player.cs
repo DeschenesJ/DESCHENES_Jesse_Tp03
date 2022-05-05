@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     //Variables de combats et Pv
     public GameObject armeJoueurSheath;
     public GameObject armeJoueurAtk;
+    
     Animator passiveOrAttack;
     // vitesse d'interval pour la coroutine
     float speedInterval;
@@ -21,7 +22,7 @@ public class Player : MonoBehaviour
     {
         //persoJoueur = GetComponent<GameObject>();
         passiveOrAttack = GetComponent<Animator>();
-        StartCoroutine(combatActive(isActive));
+        combatActive(isActive);
     }
 
     // Update is called once per frame
@@ -31,29 +32,31 @@ public class Player : MonoBehaviour
         {
             speedInterval = 0.5f;
             isActive = true;
+            combatActive(isActive);
 
         }
         else
         {
             speedInterval = 1f;
             isActive = false;
+            combatActive(isActive);
         }
 
 
     }
 
-    //void combatActive(bool isActive)
-    //{
-
-    //    armeJoueurSheath.SetActive(!isActive);
-    //    armeJoueurAtk.SetActive(isActive);
-    //}
-    IEnumerator combatActive(bool isActive)
+    void combatActive(bool isActive)
     {
-        yield return new WaitForSeconds(speedInterval);
+        
         armeJoueurSheath.SetActive(!isActive);
         armeJoueurAtk.SetActive(isActive);
-
-        // Au lieu de faire ça, je crois que je vais faire un script sur mon arme qui ne la fait que s'activer ou se désactiver
     }
+    //IEnumerator combatActive(bool isActive)
+    //{
+    //    yield return new WaitForSeconds(speedInterval);
+    //    armeJoueurSheath.SetActive(!isActive);
+    //    armeJoueurAtk.SetActive(isActive);
+
+    //    // Au lieu de faire ça, je crois que je vais faire un script sur mon arme qui ne la fait que s'activer ou se désactiver
+    //}
 }
