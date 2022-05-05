@@ -6,7 +6,7 @@ public class Deplacement : MonoBehaviour
 {
 
 
-
+    // Variables pour les dplacments du personnage joueur
     public float walkSpeed = 2.5f;
     public float runSpeed = 6f;
 
