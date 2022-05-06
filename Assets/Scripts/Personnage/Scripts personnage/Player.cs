@@ -6,15 +6,24 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    //Variables de combats et Pv
+    //Variables de combat
     public GameObject armeJoueurSheath;
     public GameObject armeJoueurAtk;
+
+    // Pv du joueur
+    private float joueurPV;
+    public float JoueurPV { get {return joueurPV ; } set {joueurPV = value ; } }
+
+    // les points d'actions
+    private float joueurPA;
     
     Animator passiveOrAttack;
     // vitesse d'interval pour la coroutine
     float speedInterval;
     // valeur booléenne pour la coroutine
     bool isActive = false;
+
+    
 
 
     // Start is called before the first frame update
@@ -30,33 +39,36 @@ public class Player : MonoBehaviour
     {
         if (passiveOrAttack.GetBool("IsFighting") == true && passiveOrAttack.GetBool("CanMove") == false)
         {
+            // peut-être les placer dans une fonction si nécessaire 
             speedInterval = 0.5f;
             isActive = true;
-            combatActive(isActive);
-
+            StartCoroutine(SwordSwitchDelay());
         }
         else
         {
             speedInterval = 1f;
             isActive = false;
-            combatActive(isActive);
+            StopCoroutine(SwordSwitchDelay());
         }
 
 
     }
 
+    // fonction exécuté dans le start du joueur afin de masquer et afficher correctement le bon type d'épée
     void combatActive(bool isActive)
     {
-        
+
         armeJoueurSheath.SetActive(!isActive);
         armeJoueurAtk.SetActive(isActive);
     }
-    //IEnumerator combatActive(bool isActive)
-    //{
-    //    yield return new WaitForSeconds(speedInterval);
-    //    armeJoueurSheath.SetActive(!isActive);
-    //    armeJoueurAtk.SetActive(isActive);
 
-    //    // Au lieu de faire ça, je crois que je vais faire un script sur mon arme qui ne la fait que s'activer ou se désactiver
-    //}
+    //coroutine pour sortir/rangé l'arme du personnage joueur
+    IEnumerator SwordSwitchDelay()
+    {
+        yield return new WaitForSeconds(speedInterval);
+        armeJoueurSheath.SetActive(!isActive);
+        armeJoueurAtk.SetActive(isActive);
+
+
+    }
 }

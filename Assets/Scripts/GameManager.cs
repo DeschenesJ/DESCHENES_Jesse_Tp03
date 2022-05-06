@@ -6,11 +6,11 @@ public class GameManager : MonoBehaviour
 {
     // L'animator du joueur
     public Animator playerAnimator;
-    // Les caméras de combat et hors combat
+    // Les cam?ras de combat et hors combat
     public GameObject camExploration;
     public GameObject camCombat;
 
-    // Valeur pour activer désactiver coroutine
+    // Valeur pour activer d?sactiver coroutine
     bool isRoutineStared;
 
     // Variables de combats
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator StartCombat()
     {
-        // Change la caméra
+        // Change la cam?ra
         camExploration.SetActive(false);
         camCombat.SetActive(true);
 
