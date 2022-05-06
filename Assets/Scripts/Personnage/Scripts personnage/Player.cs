@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class Player : MonoBehaviour
 {
     //Variables de combat
@@ -19,11 +18,9 @@ public class Player : MonoBehaviour
     
     Animator passiveOrAttack;
     // vitesse d'interval pour la coroutine
-    float speedInterval;
+    float speedInterval = 0.5f;
     // valeur booléenne pour la coroutine
     bool isActive = false;
-
-    
 
 
     // Start is called before the first frame update
@@ -37,17 +34,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (passiveOrAttack.GetBool("IsFighting") == true && passiveOrAttack.GetBool("CanMove") == false)
+        // && passiveOrAttack.GetBool("CanMove") == false
+        if (passiveOrAttack.GetBool("IsFighting") == true && FindObjectOfType<GameManager>().IsRoutineStarted == false)
         {
-            // peut-être les placer dans une fonction si nécessaire 
-            speedInterval = 0.5f;
             isActive = true;
             StartCoroutine(SwordSwitchDelay());
+            StopCoroutine(SwordSwitchDelay());
         }
-        else
+        else if (passiveOrAttack.GetBool("IsFighting") == false && FindObjectOfType<GameManager>().IsRoutineStarted == true)
         {
-            speedInterval = 1f;
             isActive = false;
+            StartCoroutine(SwordSwitchDelay());
             StopCoroutine(SwordSwitchDelay());
         }
 
@@ -57,7 +54,6 @@ public class Player : MonoBehaviour
     // fonction exécuté dans le start du joueur afin de masquer et afficher correctement le bon type d'épée
     void combatActive(bool isActive)
     {
-
         armeJoueurSheath.SetActive(!isActive);
         armeJoueurAtk.SetActive(isActive);
     }

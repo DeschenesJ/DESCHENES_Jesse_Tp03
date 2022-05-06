@@ -379,8 +379,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 2010717854}
-  camExploration: {fileID: 963194229}
-  camCombat: {fileID: 1565956613}
+  camExploration: {fileID: 963194225}
+  camCombat: {fileID: 1565956612}
 --- !u!4 &1266025979
 Transform:
   m_ObjectHideFlags: 0

@@ -11,10 +11,13 @@ public class GameManager : MonoBehaviour
     public GameObject camCombat;
 
     // Valeur pour activer d?sactiver coroutine
-    bool isRoutineStared;
+    private bool isRoutineStarted;
+    
+    public bool IsRoutineStarted { get { return isRoutineStarted; } }
 
-    // Variables de combats
+    // détermine c'est le tour à qui
     private bool isPlayerTurn;
+    // détermine s'il y a un combat ou non
     private bool isFighting;
 
     public bool IsPlayerTurn { get { return isPlayerTurn; } set { isPlayerTurn = value; } }
@@ -25,7 +28,7 @@ public class GameManager : MonoBehaviour
     {
         isPlayerTurn = true;
         isFighting = false;
-        isRoutineStared = false;
+        isRoutineStarted = false;
         playerAnimator = GetComponent<Animator>();
         camExploration = GetComponent<GameObject>();
         camCombat = GetComponent<GameObject>();
@@ -35,15 +38,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isFighting == true && isRoutineStared == false)
+        if (isFighting == true && isRoutineStarted == false)
         {
-            isRoutineStared = true;
+            isRoutineStarted = true;
             StartCoroutine(StartCombat());
         }
-        else if (isFighting == false && isRoutineStared == true)
+        else if (isFighting == false && isRoutineStarted == true)
         {
+            isRoutineStarted = false;
             StopAllCoroutines();
-            isRoutineStared = false;
         }
 
     }
