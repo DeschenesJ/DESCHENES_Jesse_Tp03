@@ -18,8 +18,6 @@ public class Deplacement : MonoBehaviour
     private float inputHorizontal;
 
     private Vector3 moveDirection;
-    private Vector3 rotateDirection;
-
     private Transform playerDirection;
     private Rigidbody rb;
 
@@ -51,18 +49,14 @@ public class Deplacement : MonoBehaviour
             // Horizontal
             inputHorizontal = Input.GetAxis("Horizontal");
 
-            rotateDirection.x = inputHorizontal;
-            rotateDirection.y = 0f;
-            rotateDirection.z = inputVertical;
+            moveDirection.x = inputHorizontal;
+            moveDirection.y = 0f;
+            moveDirection.z = inputVertical;
 
 
-            playerDirection.forward = Vector3.RotateTowards(transform.forward, rotateDirection, 10f * Time.deltaTime, 0f);
+            playerDirection.forward = Vector3.RotateTowards(transform.forward, moveDirection, 10f * Time.deltaTime, 0f);
             lerpSpeed = Time.deltaTime * 5f;
             speed = Mathf.Lerp(speed, speedTarget, lerpSpeed);
-
-
-            // Vecteur de movement (les 4 directions)
-            moveDirection = transform.forward * inputVertical + transform.right * inputHorizontal;
 
             //Animations de mouvements
             // Lorsque le joueur cours
@@ -79,12 +73,9 @@ public class Deplacement : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {
-       // if (playerAnimatior.GetBool("CanMove") == true)
-        //{
+    {  
             // Déplacer le personnage selon le vecteur de direction
-            rb.MovePosition(rb.position + rotateDirection * speed * Time.fixedDeltaTime);
-         // }
+            rb.MovePosition(rb.position + moveDirection.normalized * speed * Time.fixedDeltaTime);
     }
 
     private void typeDeplacement(float speedValue, float typeAnimation)
