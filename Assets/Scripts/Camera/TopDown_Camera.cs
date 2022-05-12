@@ -55,7 +55,6 @@ public class TopDown_Camera : MonoBehaviour
 
         // Fait bouger la position de la camera
         Vector3 flatTargetPosition = playerTarget.position;
-        flatTargetPosition.y = 0f;
         Vector3 finalPosition = flatTargetPosition + rotateVector;
 
         transform.position = Vector3.SmoothDamp(transform.position, finalPosition, ref refVelocity, camSmoothSpeed);
