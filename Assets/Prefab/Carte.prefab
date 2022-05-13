@@ -236,9 +236,9 @@ GameObject:
   m_Component:
   - component: {fileID: 574187330329029053}
   - component: {fileID: 574187330329029051}
-  - component: {fileID: 574187330329029052}
+  - component: {fileID: 3939895716063317082}
   m_Layer: 5
-  m_Name: Picture_Carte
+  m_Name: Artwork_Blank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -271,7 +271,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574187330329029054}
   m_CullTransparentMesh: 1
---- !u!114 &574187330329029052
+--- !u!114 &3939895716063317082
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -280,24 +280,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 574187330329029054}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &574187330420519309
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +313,7 @@ GameObject:
   - component: {fileID: 574187330420519306}
   - component: {fileID: 574187330420519307}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Txt_AC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -502,6 +505,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c6ef0c866f04e8da29e29e3dcc708c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  card: {fileID: 0}
+  actionCostText: {fileID: 574187330420519307}
+  nameText: {fileID: 574187329944775976}
+  effectText: {fileID: 574187331366909265}
+  artworkImg: {fileID: 3939895716063317082}
 --- !u!1 &574187331217980268
 GameObject:
   m_ObjectHideFlags: 0

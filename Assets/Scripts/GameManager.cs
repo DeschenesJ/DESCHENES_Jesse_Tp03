@@ -10,14 +10,17 @@ public class GameManager : MonoBehaviour
     public GameObject camExploration;
     public GameObject camCombat;
 
+    public CardManager cardManager;
+
+
     // Valeur pour activer d?sactiver coroutine
     private bool isRoutineStarted;
     
     public bool IsRoutineStarted { get { return isRoutineStarted; } }
 
-    // détermine c'est le tour à qui
+    // d?termine c'est le tour ? qui
     private bool isPlayerTurn;
-    // détermine s'il y a un combat ou non
+    // d?termine s'il y a un combat ou non
     private bool isFighting;
 
     public bool IsPlayerTurn { get { return isPlayerTurn; } set { isPlayerTurn = value; } }
@@ -26,6 +29,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Va chercher le CardManager dans la sc?ne
+        cardManager = GetComponent<CardManager>();
+
         isPlayerTurn = true;
         isFighting = false;
         isRoutineStarted = false;

@@ -21,13 +21,10 @@ public class Carte : ScriptableObject
     public float defense;
     public float heal;
 
-    // les référence physique de l'UI de la carte
-
-
-
+    // Méthode qui va permettre de mettre les données ci-dessus dans les données physiques de la carte
     public void Print()
     {
-
+        
 
     }
 
