@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2da22e64fc10644249bfdc07fd103afe, type: 3}
-  m_Name: Guard
+  m_Name: Heal
   m_EditorClassIdentifier: 
-  nomCarte: Guard
-  effetCarte: This card gives 5 blocks to self.
+  nomCarte: Basic Heal
+  effetCarte: 
   imageCarte: {fileID: 0}
   actionCost: 1
   attack: 0
-  defense: 5
-  heal: 0
+  defense: 0
+  heal: 5

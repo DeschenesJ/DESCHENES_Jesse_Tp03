@@ -906,7 +906,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardDisplay: {fileID: 2296543603250625653, guid: 81e0b9f68c35d4f6f9e46cf553ceab32, type: 3}
   CardFrame: {fileID: 574187330651719872, guid: 81e0b9f68c35d4f6f9e46cf553ceab32, type: 3}
-  strike: {fileID: 11400000, guid: 0e0d9fbc220d14ce9a92a0a5cbda7fbf, type: 2}
+  strikeCard: {fileID: 11400000, guid: 0e0d9fbc220d14ce9a92a0a5cbda7fbf, type: 2}
+  guardCard: {fileID: 0}
+  healCard: {fileID: 0}
 --- !u!4 &2082288723
 Transform:
   m_ObjectHideFlags: 0
@@ -955,7 +957,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 574187330651719903, guid: 81e0b9f68c35d4f6f9e46cf553ceab32, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 574187330651719903, guid: 81e0b9f68c35d4f6f9e46cf553ceab32, type: 3}
       propertyPath: m_AnchorMax.x
