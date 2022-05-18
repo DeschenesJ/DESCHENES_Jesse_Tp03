@@ -57,8 +57,18 @@ public class GameManager : MonoBehaviour
         //    StopAllCoroutines();
         //}
 
-    }
+        if (Input.GetKeyDown("p"))
+        {
+            Debug.Log("lol");
+            Time.timeScale = 0f;
+            if (Time.timeScale == 0f)
+                Time.timeScale = 1f;
+        }
+        
 
+
+    }
+    
     // Coroutine des combats va me permettre de faire apparaitre les mobs et possiblement faire les transitions entre les combats
     IEnumerator Combats(float bidon)
     {
