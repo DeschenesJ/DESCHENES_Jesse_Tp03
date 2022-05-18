@@ -9,7 +9,7 @@ public class TopDown_Camera : MonoBehaviour
     /// </summary>
 
     // transform que la camera va suivre
-    public Transform playerTarget;
+    public Transform targetRef;
     // les coordonnées de la camera
     [SerializeField]
     private float camHeight = 10f;
@@ -22,6 +22,7 @@ public class TopDown_Camera : MonoBehaviour
 
     [SerializeField]
     private float camSmoothSpeed = 0.5f;
+
 
 
     private Vector3 refVelocity;
@@ -42,7 +43,7 @@ public class TopDown_Camera : MonoBehaviour
 
     protected virtual void HandleCamera()
     {
-        if (!playerTarget)
+        if (!targetRef)
         {
             return;
         }
@@ -54,7 +55,7 @@ public class TopDown_Camera : MonoBehaviour
         Vector3 rotateVector = Quaternion.AngleAxis(camAngle, Vector3.up) * worldPosition;
 
         // Fait bouger la position de la camera
-        Vector3 flatTargetPosition = playerTarget.position;
+        Vector3 flatTargetPosition = targetRef.position;
         Vector3 finalPosition = flatTargetPosition + rotateVector;
 
         transform.position = Vector3.SmoothDamp(transform.position, finalPosition, ref refVelocity, camSmoothSpeed);
