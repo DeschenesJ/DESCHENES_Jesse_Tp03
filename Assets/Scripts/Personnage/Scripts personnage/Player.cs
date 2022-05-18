@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
 
     // Pv du joueur
     private float joueurPV;
-
-    public float JoueurPV { get {return joueurPV ; } set {joueurPV = value ; } }
-
-    // la résistance au dégâts du joeur
+    // la résistance au dégâts du joueur
     private float joueurRes;
+    // La puissance d'attaque du joueur
+    private float joueurAtk;
+    // Variable qui détermine si le joueur se fait toucher ou non
+    private bool isPlayerHit;
+
+    public float JoueurPV { get { return joueurPV; } set { joueurPV = value; } }
+    public float JoueurRes { get { return joueurRes; } set { joueurRes = value; } }
+    public float JoueurAtk { get { return joueurAtk; } set { joueurAtk = value; } }
+    public bool IsPlayerHit { get { return isPlayerHit; } set { isPlayerHit = value; } }
 
     // Va chercher le rigid body
     private Rigidbody rb;
@@ -30,8 +36,11 @@ public class Player : MonoBehaviour
         // Initialisation des Pv et de la résistance aux dégats du joueur
         joueurPV = 50f;
         joueurRes = joueurPV*0.1f;
+        joueurAtk = 10f;
         Debug.Log(joueurPV);
         Debug.Log(joueurRes);
+        Debug.Log(joueurAtk);
+        isPlayerHit = false;
         // Assigne l'animator du joueur pour ses animations de combat
         joueurAnimator = GetComponent<Animator>();
         // Assigne le rigidbody
@@ -54,6 +63,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void TakeDamage(bool isHit)
+    {
+        if (isHit == true)
+            joueurPV -= (FindObjectOfType<Ennemi>().EnnemiAtk-JoueurRes);
+        isPlayerHit = false;
+
+        
+    }
     IEnumerator Attack()
     {
         isRoutined = true;

@@ -8,33 +8,37 @@ public class GameManager : MonoBehaviour
     public Animator playerAnimator;
 
     // le spawnpoint des ennemis
-    public Transform ennemyPositionner;
+    public Transform ennemiPositionner;
 
-   
+    private Player joueur;
+    private Ennemi ennemi;
 
+    // La variable qui détermine quel combat que le joueur fait
+    [SerializeField]
+    private float vagueCombat;
+    public float VagueCombat { get {return vagueCombat; } }
 
     // Valeur pour activer d?sactiver coroutine
     private bool isRoutineStarted;
-    
     public bool IsRoutineStarted { get { return isRoutineStarted; } }
 
     // d?termine c'est le tour ? qui
     private bool isPlayerTurn;
-    // d?termine s'il y a un combat ou non
-    private bool isFighting;
+    private bool isEnnemiTurn;
 
     public bool IsPlayerTurn { get { return isPlayerTurn; } set { isPlayerTurn = value; } }
-    public bool IsFighting { get { return isFighting; } set { isFighting = value; } }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        joueur = FindObjectOfType<Player>();
+        ennemi = FindObjectOfType<Ennemi>();
+        vagueCombat = 1f;
         isPlayerTurn = true;
-        isFighting = false;
+        isEnnemiTurn = false;
         isRoutineStarted = false;
         playerAnimator = GetComponent<Animator>();
-        ennemyPositionner = GetComponent<Transform>();
+        ennemiPositionner = GetComponent<Transform>();
         // Je vais faire une coroutine qui spawn les ennemis seulement au début du combat
         // et dans cette coroutine je vais mettre une distance en x par rapport au spawner pour avoir plusieur ennemis.
         // Ça ne devrait pas être compliqué, puisque les ennemis et encounters ne sont pas randoms et c'est un nombre fixe
@@ -56,16 +60,8 @@ public class GameManager : MonoBehaviour
         //    isRoutineStarted = false;
         //    StopAllCoroutines();
         //}
-
-        if (Input.GetKeyDown("p"))
-        {
-            Debug.Log("lol");
-            Time.timeScale = 0f;
-            if (Time.timeScale == 0f)
-                Time.timeScale = 1f;
-        }
         
-
+        joueur.TakeDamage(joueur.IsPlayerHit);
 
     }
     
