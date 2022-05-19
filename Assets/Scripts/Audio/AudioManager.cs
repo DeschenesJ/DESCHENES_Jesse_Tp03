@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InterfaceCombat : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
-        
     // Start is called before the first frame update
     void Start()
     {
@@ -15,10 +14,5 @@ public class InterfaceCombat : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void Attaque()
-    {
-        Player.isPlayerAtk = true;
     }
 }

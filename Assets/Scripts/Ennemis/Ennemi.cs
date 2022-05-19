@@ -4,27 +4,36 @@ using UnityEngine;
 
 public class Ennemi : MonoBehaviour, IDamageable
 {
-    protected GameManager manager;
-    protected Animator ennemiAnimator;
+    private GameManager manager;
+    // Vatiable qui détermine si l'ennemi peut être vancu (il ne le peut pas s'il n'existe pas
+    private bool isDefeatable;
+
+    public static Animator ennemiAnimator;
 
     // Les Pv de l'ennemi
-    protected float ennemiPV;
+    public static float ennemiPV;
     // La résistance de l'ennemi
-    protected float ennemiRes;
+    public static float ennemiRes;
     // La puissance d'attaque de l'ennemi
-    protected float ennemiAtk;
+    public static float ennemiAtk;
     // Variable qui détermine si l'ennemi est touché ou non
-    protected bool isEnnemiHit;
+    public static bool isEnnemiHit;
+    // Variable qui détermine si l'ennemi attaque ou non
+    public static bool isEnnemiAtk;
+    // Variable qui détermine si l'ennemi est vaincu
+    public static bool isEnnemiDefeat;
+   
 
-    public float EnnemiPV { get { return ennemiPV; } set { ennemiPV = value; } }
-    public float EnnemiRes { get { return ennemiRes; } set { ennemiRes = value; } }
-    public float EnnemiAtk { get { return ennemiAtk; } }
-    public bool IsEnnemiHit { get { return isEnnemiHit; } set { isEnnemiHit = value; } }
-        
+    //public float EnnemiPV { get { return ennemiPV; } set { ennemiPV = value; } }
+    //public float EnnemiRes { get { return ennemiRes; } set { ennemiRes = value; } }
+    //public float EnnemiAtk { get { return ennemiAtk; } }
+    //public bool IsEnnemiHit { get { return isEnnemiHit; } set { isEnnemiHit = value; } }
+
     // Start is called before the first frame update
     void Start()
     {
         isEnnemiHit = false;
+        isDefeatable = true;
         // Va chercher le gamemanager afin d'avoir les variables dont ce script dépends
         manager = FindObjectOfType<GameManager>();
         // Va chercher son propre animator afin de pouvoir l'utiliser pour lui faire jouer ses animations
@@ -36,7 +45,7 @@ public class Ennemi : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        if (ennemiPV <= 0)
+        if (ennemiPV <= 0 && isDefeatable)
         {
             if (ennemiPV < 0)
                 ennemiPV = 0;
@@ -70,8 +79,12 @@ public class Ennemi : MonoBehaviour, IDamageable
         ennemiAnimator.SetBool("IsDefeated", true);
         // Je vais jouer un effet sonore et des particules lorsque l'ennemie est mort
 
+        // Valeur de la vague du manager par défaite de l'ennemi
+        manager.VagueCombat++;
+        Debug.Log($"Voici le combat {manager.VagueCombat}");
+        isDefeatable = false;
         // Vas se détruire lui même après deux secondes
-        Destroy(this.gameObject, 5f);
+       // Destroy(this.gameObject, 5f);
 
     }
 
@@ -82,17 +95,12 @@ public class Ennemi : MonoBehaviour, IDamageable
             StartCoroutine(AnimDegats());
             StopCoroutine(AnimDegats());
             // Le calcul des dégâts que l'ennemi subie
-            ennemiPV -= (FindObjectOfType<Player>().JoueurAtk - EnnemiRes);
-            Debug.Log($"L'ennemi se prend {FindObjectOfType<Player>().JoueurAtk - EnnemiRes} de dégâts. Il ne lui reste que {ennemiPV} Pv");
+            ennemiPV -= (Player.joueurAtk - ennemiRes);
+            Debug.Log($"L'ennemi se prend {Player.joueurAtk - ennemiRes} de dégâts. Il ne lui reste que {ennemiPV} Pv");
             isEnnemiHit = false;
         }
     }
 
-    // Méthode de teste pour les dégats
-    private void OnMouseDown()
-    {
-        isEnnemiHit = true;
-    }
 
     // Coroutine si l'ennemi se prend des dégâts
     IEnumerator AnimDegats()

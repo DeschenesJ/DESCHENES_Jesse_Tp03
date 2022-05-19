@@ -7,24 +7,26 @@ public class Player : MonoBehaviour, IDamageable
 {
 
     // Pv du joueur
-    private float joueurPV;
+    public static float joueurPV;
     // la résistance au dégâts du joueur
-    private float joueurRes;
+    public static float joueurRes;
     // La puissance d'attaque du joueur
-    private float joueurAtk;
+    public static float joueurAtk;
     // Variable qui détermine si le joueur se fait toucher ou non
-    private bool isPlayerHit;
+    public static bool isPlayerHit;
+    // Variable qui détermine si le joueur attaque ou non
+    public static bool isPlayerAtk;
 
-    public float JoueurPV { get { return joueurPV; } set { joueurPV = value; } }
-    public float JoueurRes { get { return joueurRes; } set { joueurRes = value; } }
-    public float JoueurAtk { get { return joueurAtk; } set { joueurAtk = value; } }
-    public bool IsPlayerHit { get { return isPlayerHit; } set { isPlayerHit = value; } }
+    //public float JoueurPV { get { return joueurPV; } set { joueurPV = value; } }
+    //public float JoueurRes { get { return joueurRes; } set { joueurRes = value; } }
+    //public float JoueurAtk { get { return joueurAtk; } set { joueurAtk = value; } }
+    //public bool IsPlayerHit { get { return isPlayerHit; } set { isPlayerHit = value; } }
 
     // Va chercher le rigid body
     private Rigidbody rb;
 
     // Va chercher l'animator du Joueur
-    private Animator joueurAnimator;
+    public static Animator joueurAnimator;
 
 
     // Start is called before the first frame update
@@ -35,6 +37,7 @@ public class Player : MonoBehaviour, IDamageable
         joueurRes = joueurPV*0.1f;
         joueurAtk = 10f;
         isPlayerHit = false;
+        isPlayerAtk = false;
         // Assigne l'animator du joueur pour ses animations de combat
         joueurAnimator = GetComponent<Animator>();
         // Assigne le rigidbody
@@ -45,7 +48,7 @@ public class Player : MonoBehaviour, IDamageable
     void Update()
     {
         // Pour des besoins de test, j'ai fait en sorte que je peux attacker avec la touche A
-        if (Input.GetKeyDown("a") && joueurAnimator.GetBool("IsAttacking") == false)
+        if (isPlayerAtk)
         {
             StartCoroutine(Attack());
             StopCoroutine(Attack());
@@ -63,10 +66,10 @@ public class Player : MonoBehaviour, IDamageable
             StartCoroutine(AnimDamage());
             StopCoroutine(AnimDamage());
             // Les dégats que le joueur subie
-            if (FindObjectOfType<Ennemi>().EnnemiAtk - joueurRes == 0)
+            if (Ennemi.ennemiAtk - joueurRes == 0)
                 joueurPV--;
             else
-                joueurPV -= (FindObjectOfType<Ennemi>().EnnemiAtk - joueurRes);
+                joueurPV -= (Ennemi.ennemiAtk - joueurRes);
             Debug.Log($"Pv Joueur: {joueurPV}");
             isPlayerHit = false;
         }
@@ -77,12 +80,6 @@ public class Player : MonoBehaviour, IDamageable
         joueurAnimator.SetBool("IsDefeated", true);
         // Je vais ajouter des effets sonores et des particules lorsque le personnage joueur meurt
         
-    }
-
-    // Méthode de teste pour les dégats
-    private void OnMouseDown()
-    {
-        isPlayerHit = true;
     }
 
     // Coroutine pour l'animation d'attaque
