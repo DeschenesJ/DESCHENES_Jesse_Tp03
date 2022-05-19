@@ -1862,7 +1862,7 @@ GameObject:
   - component: {fileID: 6627804925635088454}
   - component: {fileID: 267959115957512278}
   m_Layer: 0
-  m_Name: Paladin WProp J Nordstrom
+  m_Name: Paladin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

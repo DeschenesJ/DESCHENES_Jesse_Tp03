@@ -26,20 +26,14 @@ public class Player : MonoBehaviour, IDamageable
     // Va chercher l'animator du Joueur
     private Animator joueurAnimator;
 
-    // détermine si la coroutine Attack est en cours
-    bool isRoutined;
 
     // Start is called before the first frame update
     void Start()
     {
-        isRoutined = false;
         // Initialisation des Pv et de la résistance aux dégats du joueur
         joueurPV = 50f;
         joueurRes = joueurPV*0.1f;
         joueurAtk = 10f;
-        Debug.Log(joueurPV);
-        Debug.Log(joueurRes);
-        Debug.Log(joueurAtk);
         isPlayerHit = false;
         // Assigne l'animator du joueur pour ses animations de combat
         joueurAnimator = GetComponent<Animator>();
@@ -51,35 +45,59 @@ public class Player : MonoBehaviour, IDamageable
     void Update()
     {
         // Pour des besoins de test, j'ai fait en sorte que je peux attacker avec la touche A
-        if (Input.GetKeyDown("a") && joueurAnimator.GetBool("IsAttacking") == false && isRoutined == false)
+        if (Input.GetKeyDown("a") && joueurAnimator.GetBool("IsAttacking") == false)
         {
             StartCoroutine(Attack());
-            //joueurAnimator.SetBool("IsAttacking", true);
-        }
-        if (isRoutined == true)
-        { 
             StopCoroutine(Attack());
-            isRoutined = false;
         }
+        if (joueurPV <= 0)
+            Defeat();
+
+
     }
 
     public void TakeDamage(bool isHit)
     {
         if (isHit == true)
-            joueurPV -= (FindObjectOfType<Ennemi>().EnnemiAtk-JoueurRes);
-        isPlayerHit = false;
+        {
+            StartCoroutine(AnimDamage());
+            StopCoroutine(AnimDamage());
+            // Les dégats que le joueur subie
+            if (FindObjectOfType<Ennemi>().EnnemiAtk - joueurRes == 0)
+                joueurPV--;
+            else
+                joueurPV -= (FindObjectOfType<Ennemi>().EnnemiAtk - joueurRes);
+            Debug.Log($"Pv Joueur: {joueurPV}");
+            isPlayerHit = false;
+        }
+    }
 
+    void Defeat()
+    {
+        joueurAnimator.SetBool("IsDefeated", true);
+        // Je vais ajouter des effets sonores et des particules lorsque le personnage joueur meurt
         
     }
+
+    // Méthode de teste pour les dégats
+    private void OnMouseDown()
+    {
+        isPlayerHit = true;
+    }
+
+    // Coroutine pour l'animation d'attaque
     IEnumerator Attack()
     {
-        isRoutined = true;
         joueurAnimator.SetBool("IsAttacking", true);
         yield return new WaitForSeconds(0.01f);
         joueurAnimator.SetBool("IsAttacking", false);
         
-
-
     }
-
+    // Coroutine pour l'animation lorsque le joueur se prende des dégâts
+    IEnumerator AnimDamage()
+    {
+        joueurAnimator.SetBool("IsHit", true);
+        yield return new WaitForSeconds(0.01f);
+        joueurAnimator.SetBool("IsHit", false);
+    }
 }
