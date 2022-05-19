@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Ennemi : MonoBehaviour, IDamageable
 {
@@ -105,6 +106,7 @@ public class Ennemi : MonoBehaviour, IDamageable
     // Coroutine si l'ennemi se prend des dégâts
     IEnumerator AnimDegats()
     {
+        yield return new WaitForSeconds(0.6f);
         ennemiAnimator.SetBool("IsHit", true);
         yield return new WaitForSeconds(0.01f);
         ennemiAnimator.SetBool("IsHit", false);

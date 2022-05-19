@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     // determine c'est le tour de qui
     private bool isPlayerTurn;
-    private bool isEnnemiTurn;
+    //private bool isEnnemiTurn;
 
     public bool IsPlayerTurn { get { return isPlayerTurn; } set { isPlayerTurn = value; } }
 
@@ -47,7 +48,7 @@ public class GameManager : MonoBehaviour
         //ennemi = FindObjectOfType<Ennemi>();
         vagueCombat = 1f;
         isPlayerTurn = true;
-        isEnnemiTurn = false;
+      //  isEnnemiTurn = false;
         isRoutineStarted = false;
         // Va chercher l'animator du gameobject joueur et son script
         //animatorJoueur = joueur.GetComponent<Animator>();
@@ -66,10 +67,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isFightOn == true)
+        // Vérifie si l'ennemi dois apparaître
+        if (vagueCombat > 1 && isSpawnTime == true)
+            Spawner();
+
+        if (isFightOn == true && scriptEnnemi == true)
         {
-            if (vagueCombat > 1 && isSpawnTime == true)
-                Spawner();
+            
             // vérifie si le joueur attaque
             if (Player.isPlayerAtk == true)
             {
@@ -94,21 +98,23 @@ public class GameManager : MonoBehaviour
                 GameOver();
             if (Player.joueurAnimator.GetBool("IsDefeated") == true)
                 GameOver();
-            if (Ennemi.ennemiAnimator.GetBool("IsDefeated") == true)
+            if (Ennemi.ennemiAnimator == true)
             {
-                isFightOn = false;
-                //Ajouter une condition si je suis à la 10e vague
-                if (vagueCombat < 11)
-                {
-                    Ennemi.ennemiAnimator.SetBool("IsDefeated", false);
-                    StartCoroutine(Transition());
-                    // Va détruire l'ennnemi s'il le trouve
-                    Destroy(FindObjectOfType<Ennemi>().gameObject, 5f);
-                }
-                else
-                {
-                    menuCombat.SetActive(false);
-                    GameOver();
+                if (Ennemi.ennemiAnimator.GetBool("IsDefeated") == true)
+                { isFightOn = false;
+                    //Ajouter une condition si je suis à la 10e vague
+                    if (vagueCombat < 11)
+                    {
+                        Ennemi.ennemiAnimator.SetBool("IsDefeated", false);
+                        StartCoroutine(Transition());
+                        // Va détruire l'ennnemi s'il le trouve
+                        Destroy(FindObjectOfType<Ennemi>().gameObject, 5f);
+                    }
+                    else
+                    {
+                        menuCombat.SetActive(false);
+                        GameOver();
+                    }
                 }
             }
             //if (isFightOn == false)

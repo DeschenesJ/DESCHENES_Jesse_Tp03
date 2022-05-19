@@ -16,6 +16,11 @@ public class Player : MonoBehaviour, IDamageable
     public static bool isPlayerHit;
     // Variable qui détermine si le joueur attaque ou non
     public static bool isPlayerAtk;
+    // variable qui détermine si le joueur a fait une action
+    public static bool isActing;
+    // variable qui détermine si le joueur se soigne
+    public static bool isHealing;
+
 
     //public float JoueurPV { get { return joueurPV; } set { joueurPV = value; } }
     //public float JoueurRes { get { return joueurRes; } set { joueurRes = value; } }
@@ -36,8 +41,12 @@ public class Player : MonoBehaviour, IDamageable
         joueurPV = 50f;
         joueurRes = joueurPV*0.1f;
         joueurAtk = 10f;
+
+        //Lorsque isActing est false l'interface de combat va empêcher le joueur d'interagir avec ses boutons d'actions, sauf pour le bouton de passer le tour
+        isActing = true;
         isPlayerHit = false;
         isPlayerAtk = false;
+        isHealing = false;
         // Assigne l'animator du joueur pour ses animations de combat
         joueurAnimator = GetComponent<Animator>();
         // Assigne le rigidbody
@@ -75,6 +84,7 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
+    // Méthode qui détermine si le joueur est vaincu
     void Defeat()
     {
         joueurAnimator.SetBool("IsDefeated", true);
@@ -93,6 +103,7 @@ public class Player : MonoBehaviour, IDamageable
     // Coroutine pour l'animation lorsque le joueur se prende des dégâts
     IEnumerator AnimDamage()
     {
+        yield return new WaitForSeconds(0.6f);
         joueurAnimator.SetBool("IsHit", true);
         yield return new WaitForSeconds(0.01f);
         joueurAnimator.SetBool("IsHit", false);

@@ -17,8 +17,40 @@ public class InterfaceCombat : MonoBehaviour
         
     }
 
+    // La methode pour le bouton d'attaque du joueur
     public void Attaque()
     {
-        Player.isPlayerAtk = true;
+        if (Player.isActing == true && FindObjectOfType<GameManager>().IsPlayerTurn == true)
+        {
+            Player.isActing = false;
+            Player.isPlayerAtk = true;
+        }
+        Debug.Log("Vous avez fait une action, vous devez passer votre tour");
+    }
+
+    // Methode pour le bouton de soin du personnage
+    public void Soins()
+    {
+        if (Player.isActing == true)
+        {
+            Player.isActing = false;
+            Player.isHealing = true;
+        
+        }
+
+    }
+
+    // Methode pour le bouton de fin de tour
+    public void FinTour()
+    {
+        if (FindObjectOfType<GameManager>().IsPlayerTurn == true)
+        {
+            if (Player.isActing == true)
+                Player.isActing = false;
+            FindObjectOfType<GameManager>().IsPlayerTurn = false;
+        }
+        if(FindObjectOfType<GameManager>().IsPlayerTurn == false)
+            Debug.Log("Ce n'est pas votre tour");
+
     }
 }
