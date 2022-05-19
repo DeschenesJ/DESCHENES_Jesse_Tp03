@@ -4,22 +4,28 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    //Variable qui va déterminer si le prochain ennemi peut apparaître
+    public static bool isSpawnTime;
+    
     // Le menu de transition entre les combats
     public GameObject menuTransition;
+    //Le menu de combat peut-être le faire dnas le UI manager si j'ai le temps
+    public GameObject menuCombat;
     // Le GameObject du joueur
     public GameObject joueur;
     // Le script du joueur
     private Player scriptJoueur;
+
     // le spawnpoint des ennemis
     public Transform ennemiPositionner;
     // les types d'ennemies
     public GameObject ennemiPaladin;
-
     //Le script de l'ennemi
     private Ennemi scriptEnnemi;
 
-    private bool isFightOn;
-    // La variable qui détermine quel combat que le joueur fait Je vais peut-être la changer en public static
+    // Variable qui détermine si y a un combat
+    public static bool isFightOn;
+    // La variable qui détermine quel combat que le joueur fait. Je vais peut-être la changer en public static
     [SerializeField]
     private float vagueCombat;
     public float VagueCombat { get {return vagueCombat; } set { vagueCombat = value; } }
@@ -28,7 +34,7 @@ public class GameManager : MonoBehaviour
     private bool isRoutineStarted;
     public bool IsRoutineStarted { get { return isRoutineStarted; } }
 
-    // d?termine c'est le tour ? qui
+    // determine c'est le tour de qui
     private bool isPlayerTurn;
     private bool isEnnemiTurn;
 
@@ -37,7 +43,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        isSpawnTime = false;
         //ennemi = FindObjectOfType<Ennemi>();
         vagueCombat = 1f;
         isPlayerTurn = true;
@@ -62,8 +68,8 @@ public class GameManager : MonoBehaviour
     {
         if (isFightOn == true)
         {
-            if (vagueCombat < 1)
-                StartCoroutine(Spawner());
+            if (vagueCombat > 1 && isSpawnTime == true)
+                Spawner();
             // vérifie si le joueur attaque
             if (Player.isPlayerAtk == true)
             {
@@ -90,28 +96,41 @@ public class GameManager : MonoBehaviour
                 GameOver();
             if (Ennemi.ennemiAnimator.GetBool("IsDefeated") == true)
             {
-                Ennemi.ennemiAnimator.SetBool("IsDefeated", false);
-                StartCoroutine(Transition());
-                // Va détruire l'ennnemi s'il le trouve
-                Destroy(FindObjectOfType<Ennemi>().gameObject, 5f);
                 isFightOn = false;
+                //Ajouter une condition si je suis à la 10e vague
+                if (vagueCombat < 11)
+                {
+                    Ennemi.ennemiAnimator.SetBool("IsDefeated", false);
+                    StartCoroutine(Transition());
+                    // Va détruire l'ennnemi s'il le trouve
+                    Destroy(FindObjectOfType<Ennemi>().gameObject, 5f);
+                }
+                else
+                {
+                    menuCombat.SetActive(false);
+                    GameOver();
+                }
             }
+            //if (isFightOn == false)
+            //    isSpawnTime = true;
         }
 
     }
 
-    // Coroutine pour le lapse de temps de la transition
-    public IEnumerator Transition()
+    // Va servir à déterminer le type d'ennemi qui apparait
+    void Spawner()
     {
-        yield return new WaitForSeconds(6f);
-        menuTransition.SetActive(true);
-    }
-    // Coroutine des combats va me permettre de faire apparaitre les mobs et possiblement faire les transitions entre les combats
-    IEnumerator Spawner()
-    {
-        // Pour le moment c'est une valeur bidon que je retourne afin de ne pas avoir de problème de code
-        yield return new WaitForSeconds(1f);
-        
+        Debug.Log("bonjour");
+        //if (vagueCombat <= 3)
+            EnnemiSpawn(ennemiPaladin);
+        //if (vagueCombat > 3 && vagueCombat <= 6)
+        //  EnnemiSpawn(ennemiPlusfort)
+        //if (vagueCombat > 6 && vagueCombat < 10)
+        // EnnemiSpawn(EnnemiEncorePlusFort)
+        //if (vagueCombat == 10)
+        // EnnemiSpawn(LeBoss)
+
+        isSpawnTime = false;
     }
 
     // Méthode pour faire apparaître les types d'ennemis
@@ -126,16 +145,36 @@ public class GameManager : MonoBehaviour
         //animatorEnnemi = objEnnemi.GetComponent<Animator>();
 
     }
+    // Méthode qui détermine si la partie se termine sur une victoire ou sur un échec
     void GameOver()
     {
         StopAllCoroutines();
         isFightOn = false;
         if (Player.joueurAnimator.GetBool("IsDefeated") == true)
+        {
             Debug.Log("vous avez perdu");
-        if (vagueCombat == 11)
+            //open scene accueil
+        }
+        else if (vagueCombat == 11)
+        {
             Debug.Log("Vous avez gagnez!");
+            //open scene Accueil
+        }
         
     }
 
+    // Coroutine pour le lapse de temps de la transition
+    public IEnumerator Transition()
+    {
+        yield return new WaitForSeconds(6f);
+        menuTransition.SetActive(true);
+    }
+    // Coroutine des combats va me permettre de faire apparaitre les mobs et possiblement faire les transitions entre les combats
+    public IEnumerator Spawn()
+    {
+        // Pour le moment c'est une valeur bidon que je retourne afin de ne pas avoir de problème de code
+        yield return new WaitForSeconds(0.001f);
+
+    }
 
 }

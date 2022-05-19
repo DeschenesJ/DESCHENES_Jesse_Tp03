@@ -32,11 +32,11 @@ public class InterfaceTransition : MonoBehaviour
     public void Confirme()
     {
 
-
-
         isTimePaused = false;
         Time.timeScale = 1f;
         menuTransition.SetActive(false);
         menuCombat.SetActive(true);
+        GameManager.isFightOn = true;
+        GameManager.isSpawnTime = true;
     }
 }
