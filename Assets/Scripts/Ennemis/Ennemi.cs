@@ -102,6 +102,17 @@ public class Ennemi : MonoBehaviour, IDamageable
         }
     }
 
+    //Coroutine si l'ennemi attaque
+    IEnumerator Attack()
+    {
+
+
+        yield return new WaitForSeconds(0.01f);
+        
+         
+    }
+
+
 
     // Coroutine si l'ennemi se prend des dégâts
     IEnumerator AnimDegats()
