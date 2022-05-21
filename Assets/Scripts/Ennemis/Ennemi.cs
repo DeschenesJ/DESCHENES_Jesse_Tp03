@@ -23,12 +23,6 @@ public class Ennemi : MonoBehaviour, IDamageable
     public static bool isEnnemiAtk;
     // Variable qui détermine si l'ennemi est vaincu
     public static bool isEnnemiDefeat;
-   
-
-    //public float EnnemiPV { get { return ennemiPV; } set { ennemiPV = value; } }
-    //public float EnnemiRes { get { return ennemiRes; } set { ennemiRes = value; } }
-    //public float EnnemiAtk { get { return ennemiAtk; } }
-    //public bool IsEnnemiHit { get { return isEnnemiHit; } set { isEnnemiHit = value; } }
 
     // Start is called before the first frame update
     void Start()
