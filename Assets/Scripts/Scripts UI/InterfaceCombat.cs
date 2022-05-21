@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class InterfaceCombat : MonoBehaviour
 {
-        
+    public GameObject btnAttack;
+    public GameObject btnFinTour;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +18,16 @@ public class InterfaceCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        //détermine si le joueur peu utiliser le bouton fin de tour
+        if (FindObjectOfType<GameManager>().IsPlayerTurn == false)
+        {
+            btnFinTour.SetActive(false);
+            
+        }
+        if (FindObjectOfType<GameManager>().IsPlayerTurn == true && btnFinTour == false)
+            btnFinTour.SetActive(true);
+
     }
 
     // La methode pour le bouton d'attaque du joueur

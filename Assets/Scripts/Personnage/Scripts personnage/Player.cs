@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IDamageable
 {
-
+    //les variables audio du joueur
+    public AudioSource audiosJoueurDeath;
+    public AudioSource audioJoueurAttack;
     // Pv du joueur
     public static float joueurPVMax;
     public static float joueurPV;
@@ -21,6 +23,8 @@ public class Player : MonoBehaviour, IDamageable
     public static bool isActing;
     // variable qui détermine si le joueur se soigne
     public static bool isHealing;
+    //Variable qui détermine si le joueur est vaincu
+    public static bool isDefeated;
 
 
 
@@ -31,6 +35,8 @@ public class Player : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
+        isDefeated = false;
+
         // Initialisation des Pv et de la résistance aux dégats du joueur
         joueurPVMax = 50f;
         joueurPV = joueurPVMax;
@@ -49,12 +55,14 @@ public class Player : MonoBehaviour, IDamageable
 
     void Update()
     {
-        // Si le joueur peut attaquer il joue son animation d'attaque
-        if (isPlayerAtk)
-            StartCoroutine(Attack());
-        // Si le joueur est à 0 ou moins de Pv il est vaincu
-        if (joueurPV <= 0)
-            Defeat();
+        if (isDefeated == false)
+        {// Si le joueur peut attaquer il joue son animation d'attaque
+            if (isPlayerAtk)
+                StartCoroutine(Attack());
+            // Si le joueur est à 0 ou moins de Pv il est vaincu
+            if (joueurPV <= 0)
+                Defeat();
+        }
 
     }
 
@@ -74,7 +82,9 @@ public class Player : MonoBehaviour, IDamageable
     {
         joueurAnimator.SetBool("IsDefeated", true);
         // Je vais ajouter des effets sonores et des particules lorsque le personnage joueur meurt
-        
+        audiosJoueurDeath.Play();
+        isDefeated = true;
+
 
     }
 
@@ -82,7 +92,8 @@ public class Player : MonoBehaviour, IDamageable
     IEnumerator Attack()
     {
         joueurAnimator.SetBool("IsAttacking", true);
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.4f);
+        audioJoueurAttack.Play();
         joueurAnimator.SetBool("IsAttacking", false);
         Debug.Log("Vous devez Passer votre tour");
         StopCoroutine(Attack());
