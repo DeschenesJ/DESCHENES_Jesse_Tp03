@@ -40,17 +40,10 @@ public class Ennemi : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        if (ennemiPV <= 0 && isDefeatable)
-        {
-            if (ennemiPV < 0)
-                ennemiPV = 0;
-            ennemiDefeat();
-        }
-
-        if (manager.IsPlayerTurn == false && ennemiPV > 0)
+        if (manager.IsPlayerTurn == false && ennemiPV > 0f)
         {
             StartCoroutine(Attack());
-            StopCoroutine(Attack());
+            
             isEnnemiAtk = true;
         }
         
@@ -68,39 +61,29 @@ public class Ennemi : MonoBehaviour, IDamageable
         }
         else
         {
-            ennemiPV = 20f + (5 * manager.VagueCombat);
-            ennemiRes = ennemiPV * 0.1f;
+            //Détermine les Pv de l'ennemi entre chaque vague   
+            ennemiPV = 20f + (5f * (manager.VagueCombat-1));
+            ennemiRes =  (5f * (manager.VagueCombat-1f));
         }
         ennemiAtk = 5f * manager.VagueCombat;
         Debug.Log($"Pv ennemi: {ennemiPV}; Res ennemi: {ennemiRes}");
 
     }
 
-    //Méthode qui s'active lorsque l'ennemi est vaincu
-    protected void ennemiDefeat()
-    {
 
-        ennemiAnimator.SetBool("IsDefeated", true);
-        // Je vais jouer un effet sonore et des particules lorsque l'ennemie est mort
 
-        // Valeur de la vague du manager par défaite de l'ennemi
-        manager.VagueCombat++;
-        Debug.Log($"Voici le combat {manager.VagueCombat}");
-        isDefeatable = false;
-
-    }
-
+    // Méthode qui dit au script ennemi ce qu'il se passe quand il se prend des dégâts
     public void TakeDamage(bool isHit)
     {
         if (isHit == true)
         {
             StartCoroutine(AnimDegats());
-            StopCoroutine(AnimDegats());
-            // Le calcul des dégâts que l'ennemi subie
-            ennemiPV -= (Player.joueurAtk - ennemiRes);
-            Debug.Log($"L'ennemi se prend {Player.joueurAtk - ennemiRes} de dégâts. Il ne lui reste que {ennemiPV} Pv");
+            if (!(ennemiPV <= 0 && isDefeatable))
+            {
+                isHit = false;
+                isEnnemiHit = isHit;
+            }
             
-            isEnnemiHit = false;
         }
     }
 
@@ -114,7 +97,9 @@ public class Ennemi : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(0.01f);
         ennemiAnimator.SetBool("IsAttacking", false);
         yield return new WaitForSeconds(1f);
-         
+        StopCoroutine(Attack());
+
+
     }
 
 
@@ -127,5 +112,22 @@ public class Ennemi : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(0.01f);
         ennemiAnimator.SetBool("IsHit", false);
         
+        // Le calcul des dégâts que l'ennemi subie
+        ennemiPV -= (Player.joueurAtk - ennemiRes);
+        if (ennemiPV <= 0 && isDefeatable)
+        {
+            if (ennemiPV <= 0f)
+                ennemiPV = 0f;
+            yield return new WaitForSeconds(0.6f);
+            ennemiAnimator.SetBool("IsDefeated", true);
+            // Je vais jouer un effet sonore et des particules lorsque l'ennemie est mort
+
+            // Valeur de la vague du manager par défaite de l'ennemi
+            manager.VagueCombat++;
+            Debug.Log($"Voici le combat {manager.VagueCombat}");
+            isDefeatable = false;
+        }
+        Debug.Log($"Pv Ennemi: {ennemiPV}");
+        StopCoroutine(AnimDegats());
     }
 }

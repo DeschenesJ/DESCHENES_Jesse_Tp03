@@ -25,7 +25,8 @@ public class InterfaceCombat : MonoBehaviour
             Player.isActing = false;
             Player.isPlayerAtk = true;
         }
-        Debug.Log("Vous avez fait une action, vous devez passer votre tour");
+        else // Je vais le mettre dans le message d'update du combat manager
+            Debug.Log(Player.isActing);
     }
 
     // Methode pour le bouton de soin du personnage

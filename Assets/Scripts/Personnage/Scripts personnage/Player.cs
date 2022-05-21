@@ -22,6 +22,8 @@ public class Player : MonoBehaviour, IDamageable
     // variable qui détermine si le joueur se soigne
     public static bool isHealing;
 
+
+
     // Va chercher l'animator du Joueur
     public static Animator joueurAnimator;
 
@@ -47,31 +49,23 @@ public class Player : MonoBehaviour, IDamageable
 
     void Update()
     {
-        // Pour des besoins de test, j'ai fait en sorte que je peux attacker avec la touche A
+        // Si le joueur peut attaquer il joue son animation d'attaque
         if (isPlayerAtk)
-        {
             StartCoroutine(Attack());
-            StopCoroutine(Attack());
-        }
+        // Si le joueur est à 0 ou moins de Pv il est vaincu
         if (joueurPV <= 0)
             Defeat();
 
-
     }
 
+    // Méthode qui dit au script du joueur ce qu'il se passe lorsqu'il se prend des dégâts
     public void TakeDamage(bool isHit)
     {
         if (isHit == true)
         {
             StartCoroutine(AnimDamage());
-            StopCoroutine(AnimDamage());
-            // Les dégats que le joueur subie
-            if (Ennemi.ennemiAtk - joueurRes == 0)
-                joueurPV--;
-            else
-                joueurPV -= (Ennemi.ennemiAtk - joueurRes);
-            Debug.Log($"Pv Joueur: {joueurPV}");
-            isPlayerHit = false;
+            isHit = false;
+            isPlayerHit = isHit;
         }
     }
 
@@ -81,6 +75,7 @@ public class Player : MonoBehaviour, IDamageable
         joueurAnimator.SetBool("IsDefeated", true);
         // Je vais ajouter des effets sonores et des particules lorsque le personnage joueur meurt
         
+
     }
 
     // Coroutine pour l'animation d'attaque
@@ -89,7 +84,9 @@ public class Player : MonoBehaviour, IDamageable
         joueurAnimator.SetBool("IsAttacking", true);
         yield return new WaitForSeconds(0.01f);
         joueurAnimator.SetBool("IsAttacking", false);
-        
+        Debug.Log("Vous devez Passer votre tour");
+        StopCoroutine(Attack());
+
     }
     // Coroutine pour l'animation lorsque le joueur se prende des dégâts
     IEnumerator AnimDamage()
@@ -98,5 +95,16 @@ public class Player : MonoBehaviour, IDamageable
         joueurAnimator.SetBool("IsHit", true);
         yield return new WaitForSeconds(0.01f);
         joueurAnimator.SetBool("IsHit", false);
+        // Le joueur se prend les dégâts
+        if (Ennemi.ennemiAtk - joueurRes == 0)
+            joueurPV--;
+        else
+        {
+            joueurPV -= (Ennemi.ennemiAtk - joueurRes);
+            if (joueurPV <= 0f)
+                joueurPV = 0f;
+        }
+        Debug.Log($"Pv Joueur: {joueurPV}");
+        StopCoroutine(AnimDamage());
     }
 }
