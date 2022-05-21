@@ -38,7 +38,7 @@ public class Player : MonoBehaviour, IDamageable
         isDefeated = false;
 
         // Initialisation des Pv et de la résistance aux dégats du joueur
-        joueurPVMax = 50f;
+        joueurPVMax = 1f;
         joueurPV = joueurPVMax;
         joueurRes = joueurPVMax*0.1f;
         joueurAtk = 10f;
@@ -61,7 +61,7 @@ public class Player : MonoBehaviour, IDamageable
                 StartCoroutine(Attack());
             // Si le joueur est à 0 ou moins de Pv il est vaincu
             if (joueurPV <= 0)
-                Defeat();
+               StartCoroutine(Defeat());
         }
 
     }
@@ -78,12 +78,14 @@ public class Player : MonoBehaviour, IDamageable
     }
 
     // Méthode qui détermine si le joueur est vaincu
-    void Defeat()
+    IEnumerator Defeat()
     {
         joueurAnimator.SetBool("IsDefeated", true);
+        yield return new WaitForSeconds(0.3f);
         // Je vais ajouter des effets sonores et des particules lorsque le personnage joueur meurt
         audiosJoueurDeath.Play();
         isDefeated = true;
+        StopCoroutine(Defeat());
 
 
     }
