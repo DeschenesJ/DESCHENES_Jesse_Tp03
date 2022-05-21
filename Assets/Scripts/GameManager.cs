@@ -19,8 +19,9 @@ public class GameManager : MonoBehaviour
 
     // le spawnpoint des ennemis
     public Transform ennemiPositionner;
-    // les types d'ennemies
+    // les types d'ennemies-----------------
     public GameObject ennemiPaladin;
+    public GameObject ennemiBoss;
     //Le script de l'ennemi
     private Ennemi scriptEnnemi;
 
@@ -28,18 +29,16 @@ public class GameManager : MonoBehaviour
     public static bool isFightOn;
     // La variable qui détermine quel combat que le joueur fait. Je vais peut-être la changer en public static
     [SerializeField]
-    private float vagueCombat;
-    public float VagueCombat { get {return vagueCombat; } set { vagueCombat = value; } }
+    public static float vagueCombat;
 
     // Valeur pour activer d?sactiver coroutine
-    private bool isRoutineStarted;
-    public bool IsRoutineStarted { get { return isRoutineStarted; } }
-
+    public static bool isRoutineStarted;
+  
     // determine c'est le tour de qui
-    private bool isPlayerTurn;
-    //private bool isEnnemiTurn;
+    public static bool isPlayerTurn;
 
-    public bool IsPlayerTurn { get { return isPlayerTurn; } set { isPlayerTurn = value; } }
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -129,16 +128,17 @@ public class GameManager : MonoBehaviour
         //Le joueur reprend son tours
         isPlayerTurn = true;
         Player.isActing = true;
+
     }
 
     // Va servir à déterminer le type d'ennemi qui apparait
     void Spawner()
     {
         Debug.Log("bonjour");
-        //if (vagueCombat <= 3)
+        if (vagueCombat <= 3)
             EnnemiSpawn(ennemiPaladin);
-        //if (vagueCombat > 3 && vagueCombat <= 6)
-        //  EnnemiSpawn(ennemiPlusfort)
+        if (vagueCombat > 3 && vagueCombat <= 6)
+            EnnemiSpawn(ennemiBoss);
         //if (vagueCombat > 6 && vagueCombat < 10)
         // EnnemiSpawn(EnnemiEncorePlusFort)
         //if (vagueCombat == 10)

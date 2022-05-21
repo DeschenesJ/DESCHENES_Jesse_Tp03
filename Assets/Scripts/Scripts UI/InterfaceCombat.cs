@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class InterfaceCombat : MonoBehaviour
 {
-    public GameObject btnAttack;
+    // Le bouton pour la fin des tours
     public GameObject btnFinTour;
+    // Détermine si le pouton fin est actif. Le script ennemi va le remettre à true lorsque la coroutine attack approche de sa fin
+    public static bool isFinActive;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+        isFinActive = true;
         
     }
 
@@ -19,21 +22,13 @@ public class InterfaceCombat : MonoBehaviour
     void Update()
     {
 
-        //détermine si le joueur peu utiliser le bouton fin de tour
-        if (FindObjectOfType<GameManager>().IsPlayerTurn == false)
-        {
-            btnFinTour.SetActive(false);
-            
-        }
-        if (FindObjectOfType<GameManager>().IsPlayerTurn == true && btnFinTour == false)
-            btnFinTour.SetActive(true);
-
     }
+    
 
     // La methode pour le bouton d'attaque du joueur
     public void Attaque()
     {
-        if (Player.isActing == true && FindObjectOfType<GameManager>().IsPlayerTurn == true)
+        if (Player.isActing == true && GameManager.isPlayerTurn == true)
         {
             Player.isActing = false;
             Player.isPlayerAtk = true;
@@ -57,15 +52,16 @@ public class InterfaceCombat : MonoBehaviour
     // Methode pour le bouton de fin de tour
     public void FinTour()
     {
-        if (FindObjectOfType<Ennemi>() == true)
+        if (FindObjectOfType<Ennemi>() == true && isFinActive == true)
         {
-            if (FindObjectOfType<GameManager>().IsPlayerTurn == true)
+            if (GameManager.isPlayerTurn == true)
             {
                 if (Player.isActing == true)
                     Player.isActing = false;
-                FindObjectOfType<GameManager>().IsPlayerTurn = false;
+                GameManager.isPlayerTurn = false;
+                isFinActive = false;
             }
-            if (FindObjectOfType<GameManager>().IsPlayerTurn == false)
+            if (GameManager.isPlayerTurn == false)
                 Debug.Log("Ce n'est pas votre tour");
         }
     }

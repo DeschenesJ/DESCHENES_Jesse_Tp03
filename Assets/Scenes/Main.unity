@@ -1402,7 +1402,7 @@ MonoBehaviour:
   joueur: {fileID: 584715354}
   ennemiPositionner: {fileID: 1905432179}
   ennemiPaladin: {fileID: 6285855917722135833, guid: fd8b7f4d601eb3441ba7e71d6b175a3c, type: 3}
-  vagueCombat: 0
+  ennemiBoss: {fileID: 3091553614113087317, guid: 6da1a3ae8a16b1e48a4204f1f3c28af6, type: 3}
 --- !u!4 &1266025979
 Transform:
   m_ObjectHideFlags: 0
@@ -2496,7 +2496,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b56cd570e4f33d54e85f7a9241c1656b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btnAttack: {fileID: 293770174}
   btnFinTour: {fileID: 1539498886}
 --- !u!1 &1849312741
 GameObject:

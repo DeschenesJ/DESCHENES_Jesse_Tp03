@@ -5,10 +5,14 @@ using System;
 
 public class Ennemi : MonoBehaviour, IDamageable
 {
-    private GameManager manager;
+    //les variables audio du joueur
+    public AudioSource audioEnnemiDeath;
+    public AudioSource audioEnnemiAttack;
+
     // Vatiable qui détermine si l'ennemi peut être vancu (il ne le peut pas s'il n'existe pas
     private bool isDefeatable;
 
+    // l'animator de l'ennemi
     public static Animator ennemiAnimator;
 
     // Les Pv de l'ennemi
@@ -29,8 +33,6 @@ public class Ennemi : MonoBehaviour, IDamageable
     {
         isEnnemiHit = false;
         isDefeatable = true;
-        // Va chercher le gamemanager afin d'avoir les variables dont ce script dépends
-        manager = FindObjectOfType<GameManager>();
         // Va chercher son propre animator afin de pouvoir l'utiliser pour lui faire jouer ses animations
         ennemiAnimator = GetComponent<Animator>();
         ennemiProperties();
@@ -40,21 +42,19 @@ public class Ennemi : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        if (manager.IsPlayerTurn == false && ennemiPV > 0f)
+        if (GameManager.isPlayerTurn == false && ennemiPV > 0f)
         {
             StartCoroutine(Attack());
             
             isEnnemiAtk = true;
         }
-        
-
     }
     // Méthode pour les propriétés des ennemies
     void ennemiProperties()
     {
         // les pv, la résistance et l'a force d'attaque de l'ennemi varient selon la vague
         
-        if (manager.VagueCombat == 1)
+        if (GameManager.vagueCombat == 1)
         {
             ennemiPV = 20f;
             ennemiRes = 0f;
@@ -62,10 +62,10 @@ public class Ennemi : MonoBehaviour, IDamageable
         else
         {
             //Détermine les Pv de l'ennemi entre chaque vague   
-            ennemiPV = 20f + (5f * (manager.VagueCombat-1));
-            ennemiRes =  (5f * (manager.VagueCombat-1f));
+            ennemiPV = 20f + (5f * (GameManager.vagueCombat-1));
+            ennemiRes =  (5f * (GameManager.vagueCombat-1f));
         }
-        ennemiAtk = 5f * manager.VagueCombat;
+        ennemiAtk = 8f * GameManager.vagueCombat;
         Debug.Log($"Pv ennemi: {ennemiPV}; Res ennemi: {ennemiRes}");
 
     }
@@ -94,15 +94,13 @@ public class Ennemi : MonoBehaviour, IDamageable
     {
         yield return new WaitForSeconds(2f);
         ennemiAnimator.SetBool("IsAttacking", true); ;
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.4f);
+        audioEnnemiAttack.Play();
         ennemiAnimator.SetBool("IsAttacking", false);
         yield return new WaitForSeconds(1f);
+        InterfaceCombat.isFinActive = true;
         StopCoroutine(Attack());
-
-
     }
-
-
 
     // Coroutine si l'ennemi se prend des dégâts
     IEnumerator AnimDegats()
@@ -111,20 +109,25 @@ public class Ennemi : MonoBehaviour, IDamageable
         ennemiAnimator.SetBool("IsHit", true);
         yield return new WaitForSeconds(0.01f);
         ennemiAnimator.SetBool("IsHit", false);
-        
+
         // Le calcul des dégâts que l'ennemi subie
-        ennemiPV -= (Player.joueurAtk - ennemiRes);
-        if (ennemiPV <= 0 && isDefeatable)
+        if (Player.joueurAtk - ennemiRes == 0)
+            ennemiPV--;
+        else
         {
+            ennemiPV -= (Player.joueurAtk - ennemiRes);
             if (ennemiPV <= 0f)
                 ennemiPV = 0f;
+        }
+        if (ennemiPV <= 0 && isDefeatable)
+        {
+            
             yield return new WaitForSeconds(0.6f);
             ennemiAnimator.SetBool("IsDefeated", true);
-            // Je vais jouer un effet sonore et des particules lorsque l'ennemie est mort
-
+            audioEnnemiDeath.Play();
             // Valeur de la vague du manager par défaite de l'ennemi
-            manager.VagueCombat++;
-            Debug.Log($"Voici le combat {manager.VagueCombat}");
+            GameManager.vagueCombat++;
+            Debug.Log($"Voici le combat {GameManager.vagueCombat}");
             isDefeatable = false;
         }
         Debug.Log($"Pv Ennemi: {ennemiPV}");

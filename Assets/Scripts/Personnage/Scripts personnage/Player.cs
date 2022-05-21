@@ -38,7 +38,7 @@ public class Player : MonoBehaviour, IDamageable
         isDefeated = false;
 
         // Initialisation des Pv et de la résistance aux dégats du joueur
-        joueurPVMax = 1f;
+        joueurPVMax = 50f;
         joueurPV = joueurPVMax;
         joueurRes = joueurPVMax*0.1f;
         joueurAtk = 10f;
