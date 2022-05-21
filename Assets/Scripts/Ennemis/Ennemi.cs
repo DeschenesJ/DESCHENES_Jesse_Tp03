@@ -69,12 +69,12 @@ public class Ennemi : MonoBehaviour, IDamageable
         
         if (manager.VagueCombat == 1)
         {
-            ennemiPV = 30f;
+            ennemiPV = 20f;
             ennemiRes = 0f;
         }
         else
         {
-            ennemiPV = 30f + (5 * manager.VagueCombat);
+            ennemiPV = 20f + (5 * manager.VagueCombat);
             ennemiRes = ennemiPV * 0.1f;
         }
         ennemiAtk = 5f * manager.VagueCombat;
@@ -93,9 +93,6 @@ public class Ennemi : MonoBehaviour, IDamageable
         manager.VagueCombat++;
         Debug.Log($"Voici le combat {manager.VagueCombat}");
         isDefeatable = false;
-        // Vas se détruire lui même après deux secondes
-       // Destroy(this.gameObject, 5f);
-       
 
     }
 

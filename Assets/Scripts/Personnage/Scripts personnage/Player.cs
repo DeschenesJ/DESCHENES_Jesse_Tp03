@@ -7,6 +7,7 @@ public class Player : MonoBehaviour, IDamageable
 {
 
     // Pv du joueur
+    public static float joueurPVMax;
     public static float joueurPV;
     // la résistance au dégâts du joueur
     public static float joueurRes;
@@ -21,15 +22,6 @@ public class Player : MonoBehaviour, IDamageable
     // variable qui détermine si le joueur se soigne
     public static bool isHealing;
 
-
-    //public float JoueurPV { get { return joueurPV; } set { joueurPV = value; } }
-    //public float JoueurRes { get { return joueurRes; } set { joueurRes = value; } }
-    //public float JoueurAtk { get { return joueurAtk; } set { joueurAtk = value; } }
-    //public bool IsPlayerHit { get { return isPlayerHit; } set { isPlayerHit = value; } }
-
-    // Va chercher le rigid body
-    private Rigidbody rb;
-
     // Va chercher l'animator du Joueur
     public static Animator joueurAnimator;
 
@@ -38,8 +30,9 @@ public class Player : MonoBehaviour, IDamageable
     void Start()
     {
         // Initialisation des Pv et de la résistance aux dégats du joueur
-        joueurPV = 50f;
-        joueurRes = joueurPV*0.1f;
+        joueurPVMax = 50f;
+        joueurPV = joueurPVMax;
+        joueurRes = joueurPVMax*0.1f;
         joueurAtk = 10f;
 
         //Lorsque isActing est false l'interface de combat va empêcher le joueur d'interagir avec ses boutons d'actions, sauf pour le bouton de passer le tour
@@ -49,8 +42,6 @@ public class Player : MonoBehaviour, IDamageable
         isHealing = false;
         // Assigne l'animator du joueur pour ses animations de combat
         joueurAnimator = GetComponent<Animator>();
-        // Assigne le rigidbody
-        rb = GetComponent<Rigidbody>();
 
     }
 
