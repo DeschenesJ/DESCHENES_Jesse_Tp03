@@ -103,7 +103,7 @@ public class Player : MonoBehaviour, IDamageable
     // Coroutine pour l'animation lorsque le joueur se prende des dégâts
     IEnumerator AnimDamage()
     {
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(2.6f);
         joueurAnimator.SetBool("IsHit", true);
         yield return new WaitForSeconds(0.01f);
         joueurAnimator.SetBool("IsHit", false);

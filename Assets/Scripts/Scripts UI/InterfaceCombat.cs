@@ -43,14 +43,16 @@ public class InterfaceCombat : MonoBehaviour
     // Methode pour le bouton de fin de tour
     public void FinTour()
     {
-        if (FindObjectOfType<GameManager>().IsPlayerTurn == true)
+        if (FindObjectOfType<Ennemi>() == true)
         {
-            if (Player.isActing == true)
-                Player.isActing = false;
-            FindObjectOfType<GameManager>().IsPlayerTurn = false;
+            if (FindObjectOfType<GameManager>().IsPlayerTurn == true)
+            {
+                if (Player.isActing == true)
+                    Player.isActing = false;
+                FindObjectOfType<GameManager>().IsPlayerTurn = false;
+            }
+            if (FindObjectOfType<GameManager>().IsPlayerTurn == false)
+                Debug.Log("Ce n'est pas votre tour");
         }
-        if(FindObjectOfType<GameManager>().IsPlayerTurn == false)
-            Debug.Log("Ce n'est pas votre tour");
-
     }
 }

@@ -38,5 +38,6 @@ public class InterfaceTransition : MonoBehaviour
         menuCombat.SetActive(true);
         GameManager.isFightOn = true;
         GameManager.isSpawnTime = true;
+        FindObjectOfType<GameManager>().PlayerTurnRestored();
     }
 }

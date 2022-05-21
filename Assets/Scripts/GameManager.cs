@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
             {
                 Player.isPlayerHit = true;
                 Ennemi.isEnnemiAtk = false;
+                PlayerTurnRestored();
             }
 
             // va vérifier si quelqu'un se prend des dégâts
@@ -109,6 +110,7 @@ public class GameManager : MonoBehaviour
                         StartCoroutine(Transition());
                         // Va détruire l'ennnemi s'il le trouve
                         Destroy(FindObjectOfType<Ennemi>().gameObject, 5f);
+                        
                     }
                     else
                     {
@@ -117,10 +119,16 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
-            //if (isFightOn == false)
-            //    isSpawnTime = true;
         }
 
+    }
+
+    // Méthode qui redonne le tour au joueur
+    public void PlayerTurnRestored()
+    {
+        //Le joueur reprend son tours
+        isPlayerTurn = true;
+        Player.isActing = true;
     }
 
     // Va servir à déterminer le type d'ennemi qui apparait

@@ -52,6 +52,15 @@ public class Ennemi : MonoBehaviour, IDamageable
                 ennemiPV = 0;
             ennemiDefeat();
         }
+
+        if (manager.IsPlayerTurn == false && ennemiPV > 0)
+        {
+            StartCoroutine(Attack());
+            StopCoroutine(Attack());
+            isEnnemiAtk = true;
+        }
+        
+
     }
     // Méthode pour les propriétés des ennemies
     void ennemiProperties()
@@ -86,6 +95,7 @@ public class Ennemi : MonoBehaviour, IDamageable
         isDefeatable = false;
         // Vas se détruire lui même après deux secondes
        // Destroy(this.gameObject, 5f);
+       
 
     }
 
@@ -98,17 +108,21 @@ public class Ennemi : MonoBehaviour, IDamageable
             // Le calcul des dégâts que l'ennemi subie
             ennemiPV -= (Player.joueurAtk - ennemiRes);
             Debug.Log($"L'ennemi se prend {Player.joueurAtk - ennemiRes} de dégâts. Il ne lui reste que {ennemiPV} Pv");
+            
             isEnnemiHit = false;
         }
     }
 
+   
+
     //Coroutine si l'ennemi attaque
     IEnumerator Attack()
     {
-
-
+        yield return new WaitForSeconds(2f);
+        ennemiAnimator.SetBool("IsAttacking", true); ;
         yield return new WaitForSeconds(0.01f);
-        
+        ennemiAnimator.SetBool("IsAttacking", false);
+        yield return new WaitForSeconds(1f);
          
     }
 
