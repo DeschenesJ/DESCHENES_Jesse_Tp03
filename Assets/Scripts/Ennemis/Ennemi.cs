@@ -98,6 +98,7 @@ public class Ennemi : MonoBehaviour, IDamageable
         audioEnnemiAttack.Play();
         ennemiAnimator.SetBool("IsAttacking", false);
         yield return new WaitForSeconds(1f);
+        // Variable de l'interface de combat qui va permettre au joueur d'interagir avec le bouton fin
         InterfaceCombat.isFinActive = true;
         StopCoroutine(Attack());
     }

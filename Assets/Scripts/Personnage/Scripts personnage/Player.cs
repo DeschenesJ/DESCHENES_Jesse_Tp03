@@ -62,6 +62,8 @@ public class Player : MonoBehaviour, IDamageable
             // Si le joueur est à 0 ou moins de Pv il est vaincu
             if (joueurPV <= 0)
                StartCoroutine(Defeat());
+            if (isHealing)
+               StartCoroutine(Healing());
         }
 
     }
@@ -101,6 +103,33 @@ public class Player : MonoBehaviour, IDamageable
         StopCoroutine(Attack());
 
     }
+
+    // Coroutine pour l'animation de soins du joueur
+    IEnumerator Healing()
+    {
+        //int JoueurPv = (int)joueurPV;
+        //Debug.Log(JoueurPv);
+        joueurAnimator.SetBool("IsCasting", true);
+        yield return new WaitForSeconds(0.4f);
+        joueurAnimator.SetBool("IsCasting", false);
+        // Le joueur se soinge s'il a perdu de la vie
+        if(joueurPV < joueurPVMax)
+        {
+            joueurPV += joueurPVMax * 0.2f;
+            if (joueurPV >= joueurPVMax)
+                joueurPV = joueurPVMax;
+
+
+           
+
+        }
+        isHealing = false;
+        Debug.Log(joueurPV);
+        StopCoroutine(Healing());
+
+
+    }
+
     // Coroutine pour l'animation lorsque le joueur se prende des dégâts
     IEnumerator AnimDamage()
     {

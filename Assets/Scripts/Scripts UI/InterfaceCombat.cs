@@ -40,12 +40,13 @@ public class InterfaceCombat : MonoBehaviour
     // Methode pour le bouton de soin du personnage
     public void Soins()
     {
-        if (Player.isActing == true)
+        if (Player.isActing == true && Player.joueurPV < Player.joueurPVMax && Player.joueurPV > 0 && GameManager.isPlayerTurn == true)
         {
             Player.isActing = false;
             Player.isHealing = true;
         
         }
+        Debug.Log("You don't need to heal");
 
     }
 
