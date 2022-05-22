@@ -1,20 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InterfaceCombat : MonoBehaviour
 {
     // Le bouton pour la fin des tours
     public GameObject btnFinTour;
     // Détermine si le pouton fin est actif. Le script ennemi va le remettre à true lorsque la coroutine attack approche de sa fin
-    public static bool isFinActive;
+    public static bool isFinActive = true;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        isFinActive = true;
         
     }
 

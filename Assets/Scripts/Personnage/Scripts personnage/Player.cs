@@ -82,7 +82,7 @@ public class Player : MonoBehaviour, IDamageable
             if (isPlayerAtk)
                 StartCoroutine(Attack());
             // Si le joueur est à 0 ou moins de Pv il est vaincu
-            if (joueurPV <= 0)
+            if (joueurPV <= 0 && isDefeated == false)
                StartCoroutine(Defeat());
             if (isHealing)
                StartCoroutine(Casting());
@@ -117,7 +117,6 @@ public class Player : MonoBehaviour, IDamageable
         isDefeated = true;
         StopCoroutine(Defeat());
 
-
     }
 
     // Coroutine pour l'animation d'attaque
@@ -129,6 +128,9 @@ public class Player : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(0.4f);
         audioJoueurAttack.Play();
         joueurAnimator.SetBool("IsAttacking", false);
+        // Dit au UI manager d'updater les messages d'interactions
+        
+        //
         Debug.Log("Vous devez Passer votre tour");
         StopCoroutine(Attack());
 
@@ -187,20 +189,27 @@ public class Player : MonoBehaviour, IDamageable
     // Coroutine pour l'animation lorsque le joueur se prende des dégâts
     IEnumerator AnimDamage()
     {
-        yield return new WaitForSeconds(2.6f);
-        joueurAnimator.SetBool("IsHit", true);
-        yield return new WaitForSeconds(0.01f);
-        joueurAnimator.SetBool("IsHit", false);
-        // Le joueur se prend les dégâts
-        if (Ennemi.ennemiAtk - joueurResMod <= 0)
-            joueurPV--;
-        else
+        if (isDefeated == false)
         {
-            joueurPV -= (Ennemi.ennemiAtk - joueurResMod);
-            if (joueurPV <= 0f)
-                joueurPV = 0f;
+            //yield return new WaitForSeconds(2.6f);
+            joueurAnimator.SetBool("IsHit", true);
+            yield return new WaitForSeconds(0.01f);
+            joueurAnimator.SetBool("IsHit", false);
+            // Le joueur se prend les dégâts
+            if (Ennemi.ennemiAtk - joueurResMod <= 0)
+                joueurPV--;
+            else
+            {
+                joueurPV -= (Ennemi.ennemiAtk - joueurResMod);
+                if (joueurPV <= 0f)
+                    joueurPV = 0f;
+            }
+            if (isResistanceBuffed == true)
+            {
+                isResistanceBuffed = false;
+            }
+            Debug.Log($"Pv Joueur: {joueurPV}");
         }
-        Debug.Log($"Pv Joueur: {joueurPV}");
         StopCoroutine(AnimDamage());
     }
 }

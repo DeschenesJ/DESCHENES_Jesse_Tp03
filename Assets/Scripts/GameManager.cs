@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     //Variable qui va déterminer si le prochain ennemi peut apparaître
     public static bool isSpawnTime;
+
     // Variable qui détermine le skin de l'ennemi et possiblement les actions de l'ennemi
     System.Random rnCheck = new System.Random();
     
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject joueur;
     // Le script du joueur
     private Player scriptJoueur;
+
 
     // le spawnpoint des ennemis
     public Transform ennemiPositionner;
@@ -69,7 +71,6 @@ public class GameManager : MonoBehaviour
 
         if (isFightOn == true && scriptEnnemi == true)
         {
-            
             // vérifie si le joueur attaque
             if (Player.isPlayerAtk == true)
             {
@@ -80,12 +81,12 @@ public class GameManager : MonoBehaviour
                 if (Player.isResistanceBuffed == true)
                     StartCoroutine(Debuff());
             }
-            else if (Ennemi.isEnnemiAtk == true)
-            {
-                Player.isPlayerHit = true;
-                Ennemi.isEnnemiAtk = false;
-                PlayerTurnRestored();
-            }
+            //else if (Ennemi.isEnnemiAtk == true)
+            //{
+            //    Player.isPlayerHit = true;
+            //    Ennemi.isEnnemiAtk = false;
+            //    //PlayerTurnRestored();
+            //}
 
             // va vérifier si quelqu'un se prend des dégâts
             if (Player.isPlayerHit == true)
@@ -95,10 +96,7 @@ public class GameManager : MonoBehaviour
                 scriptEnnemi.TakeDamage(Ennemi.isEnnemiHit);
 
             //vérifie si la partie est terminé et que l'ennemi est vaincu
-            if (vagueCombat == 11)
-                GameOver();
-            if (Player.joueurAnimator.GetBool("IsDefeated") == true)
-                GameOver();
+            
             if (Ennemi.ennemiAnimator == true)
             {
                 if (Ennemi.ennemiAnimator.GetBool("IsDefeated") == true)
@@ -120,16 +118,21 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
+            if (vagueCombat == 11)
+                GameOver();
+            if (Player.joueurAnimator.GetBool("IsDefeated") == true)
+                GameOver();
         }
 
     }
 
-    // Méthode qui redonne le tour au joueur
+    // Méthode qui redonne le tour au joueur qui sera utilisé par l'ennemi à la fin de son tour
     public void PlayerTurnRestored()
     {
         //Le joueur reprend son tours
         isPlayerTurn = true;
         Player.isActing = true;
+        Ennemi.isEnnemiAtk = false;
     }
 
     // Va servir à déterminer le type d'ennemi qui apparait
@@ -171,11 +174,13 @@ public class GameManager : MonoBehaviour
         if (Player.joueurAnimator.GetBool("IsDefeated") == true)
         {
             Debug.Log("vous avez perdu");
+            UI_GameOver.isGameOver = true;
             //open scene accueil
         }
         else if (vagueCombat == 11)
         {
             Debug.Log("Vous avez gagnez!");
+            UI_GameOver.isGameOver = true;
             //open scene Accueil
         }
         

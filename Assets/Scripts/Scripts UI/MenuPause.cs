@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuPause : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class MenuPause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) && UI_GameOver.isGameOver == false)
         {
             if (isGamePaused)
                 ResumeGame();
@@ -21,6 +22,7 @@ public class MenuPause : MonoBehaviour
         }
     }
 
+    //Méthode qui résume le jeu
     public void ResumeGame()
     {
         menuPause.SetActive(false);
@@ -31,6 +33,7 @@ public class MenuPause : MonoBehaviour
             menuCombat.SetActive(true);
     }
 
+    //Méthode qui met le jeu sur pause
     void PauseGame()
     {
         menuPause.SetActive(true);
@@ -40,12 +43,14 @@ public class MenuPause : MonoBehaviour
     
     }
 
-    public void MenuSons()
+    //Méthode pour le bouton du menu audio
+    public void MenuAudio()
     {
 
 
     }
 
+    //Méthode pour le bouton Quitter
     public void Quitter()
     { 
     

@@ -27,12 +27,15 @@ public class Ennemi : MonoBehaviour, IDamageable
     public static bool isEnnemiAtk;
     // Variable qui détermine si l'ennemi est vaincu
     public static bool isEnnemiDefeat;
+    // Variable qui détermine si l'ennemi a fini son tour
+    public static bool isTurnEnd;
 
     // Start is called before the first frame update
     void Start()
     {
         isEnnemiHit = false;
         isDefeatable = true;
+        isTurnEnd = false;
         // Va chercher son propre animator afin de pouvoir l'utiliser pour lui faire jouer ses animations
         ennemiAnimator = GetComponent<Animator>();
         Debug.Log(ennemiAnimator.GetBool("IsDefeated"));
@@ -45,9 +48,9 @@ public class Ennemi : MonoBehaviour, IDamageable
     {
         if (GameManager.isPlayerTurn == false && ennemiPV > 0f)
         {
-            StartCoroutine(Attack());
-            
             isEnnemiAtk = true;
+            isTurnEnd = false;
+            StartCoroutine(Attack());
         }
     }
     // Méthode pour les propriétés des ennemies
@@ -62,8 +65,8 @@ public class Ennemi : MonoBehaviour, IDamageable
         else
         {
             //Détermine les Pv de l'ennemi entre chaque vague   
-            ennemiPV = 20f + (5f * (GameManager.vagueCombat-1));
-            ennemiRes = (5f * (GameManager.vagueCombat - 1f)) ;
+            ennemiPV = 20f + (5f * (GameManager.vagueCombat - 1));
+            ennemiRes = (5f * (GameManager.vagueCombat - 1f));
         }
         ennemiAtk = 8f * GameManager.vagueCombat;
         Debug.Log($"Pv ennemi: {ennemiPV}; Res ennemi: {ennemiRes}");
@@ -83,23 +86,34 @@ public class Ennemi : MonoBehaviour, IDamageable
                 isHit = false;
                 isEnnemiHit = isHit;
             }
-            
+
         }
     }
 
-   
+
 
     //Coroutine si l'ennemi attaque
     IEnumerator Attack()
     {
-        yield return new WaitForSeconds(2f);
-        ennemiAnimator.SetBool("IsAttacking", true); ;
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.2f);
+        ennemiAnimator.SetBool("IsAttacking", true);
+        yield return new WaitForSeconds(0.01f);
         audioEnnemiAttack.Play();
+        yield return new WaitForSeconds(0.4f);
         ennemiAnimator.SetBool("IsAttacking", false);
-        yield return new WaitForSeconds(1f);
         // Variable de l'interface de combat qui va permettre au joueur d'interagir avec le bouton fin
         InterfaceCombat.isFinActive = true;
+        //variable qui met fin au tour de l'ennemi
+        
+        if (isEnnemiAtk == true)
+        {
+            
+            Player.isPlayerHit = true;
+            FindObjectOfType<GameManager>().PlayerTurnRestored();
+            yield return new WaitForSeconds(1f);
+            isTurnEnd = true;
+        }
+        
         StopCoroutine(Attack());
     }
 
@@ -122,7 +136,7 @@ public class Ennemi : MonoBehaviour, IDamageable
         }
         if (ennemiPV <= 0 && isDefeatable)
         {
-            
+
             yield return new WaitForSeconds(1.2f);
             ennemiAnimator.SetBool("IsDefeated", true);
             audioEnnemiDeath.Play();
