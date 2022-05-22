@@ -9,20 +9,27 @@ public class Player : MonoBehaviour, IDamageable
     public AudioSource audiosJoueurDeath;
     public AudioSource audioJoueurAttack;
     public AudioSource audioJoueurHealing;
-    public AudioSource audioJoueurBuffing;
+    public AudioSource audioJoueurBuffingAtk;
+    public AudioSource audioJoueurBuffingRes;
     // Pv du joueur
     public static float joueurPVMax;
     public static float joueurPV;
     // la résistance au dégâts du joueur
     public static float joueurRes;
+    // Inclue le modificateur de résistance utlilisé par les autres scripts pour les calculs
+    public static float joueurResMod;
     // La puissance d'attaque du joueur
     public static float joueurAtk;
-    // Inclus le modificatuer de dégâts
+    // Inclue le modificateur de dégâts variable utlilisé par les autres scripts pour les calculs
     public static float joueurAtkMod;
     // Variable qui détermine si le joueur multiplie son attaque
-    public static bool isBuffing;
-    // Variable qui s'active lorsque que le joueur augmente son attaque
+    public static bool isBuffingAtk;
+    // Variable qui détermine si le joueur multiplie sa résistance
+    public static bool isBuffingRes;
+    // Variable qui s'active lorsque le joueur augmente son attaque
     public static bool isAttackBuffed;
+    // Variable qui s'active lorsque le joueur augmente sa résistance 
+    public static bool isResistanceBuffed;
     // Variable qui détermine si le joueur se fait toucher ou non
     public static bool isPlayerHit;
     // Variable qui détermine si le joueur attaque ou non
@@ -51,6 +58,7 @@ public class Player : MonoBehaviour, IDamageable
         joueurRes = joueurPVMax*0.1f;
         joueurAtk = 10f;
         joueurAtkMod = joueurAtk;
+        joueurResMod = joueurRes;
         
         // Initialisation des variables booléennes du joueur
         //Lorsque isActing est false l'interface de combat va empêcher le joueur d'interagir avec ses boutons d'actions, sauf pour le bouton de passer le tour
@@ -58,8 +66,10 @@ public class Player : MonoBehaviour, IDamageable
         isPlayerHit = false;
         isPlayerAtk = false;
         isHealing = false;
-        isBuffing = false;
+        isBuffingAtk = false;
         isAttackBuffed = false;
+        isBuffingRes = false;
+        isResistanceBuffed = false;
         // Assigne l'animator du joueur pour ses animations de combat
         joueurAnimator = GetComponent<Animator>();
 
@@ -76,7 +86,9 @@ public class Player : MonoBehaviour, IDamageable
                StartCoroutine(Defeat());
             if (isHealing)
                StartCoroutine(Casting());
-            if (isBuffing)
+            if (isBuffingAtk)
+                StartCoroutine(Casting());
+            if (isBuffingRes)
                 StartCoroutine(Casting());
         }
 
@@ -112,16 +124,12 @@ public class Player : MonoBehaviour, IDamageable
     IEnumerator Attack()
     {
         Debug.Log($"Attaque du joueur : {joueurAtkMod}");
+        Debug.Log($"Résistance du joueur : {joueurResMod}");
         joueurAnimator.SetBool("IsAttacking", true);
         yield return new WaitForSeconds(0.4f);
         audioJoueurAttack.Play();
         joueurAnimator.SetBool("IsAttacking", false);
         Debug.Log("Vous devez Passer votre tour");
-        //if (isAttackBuffed == true)
-        //{
-        //    joueurAtkMod = joueurAtk;
-        //    isAttackBuffed = false;
-        //}
         StopCoroutine(Attack());
 
     }
@@ -151,17 +159,28 @@ public class Player : MonoBehaviour, IDamageable
         }
 
         // lorsque le joueur buff son attaque
-        if (isBuffing == true && isAttackBuffed == false)
+        if (isBuffingAtk == true && isAttackBuffed == false)
         {
+            audioJoueurBuffingAtk.Play();
             joueurAnimator.SetBool("IsCasting", true);
-            audioJoueurBuffing.Play();
             yield return new WaitForSeconds(0.4f);
             joueurAnimator.SetBool("IsCasting", false);
             joueurAtkMod = joueurAtk * 5f;
-            isBuffing = false;
+            isBuffingAtk = false;
             isAttackBuffed = true;
         }
 
+        // lorsque le joueur buff sa resistance
+        if (isBuffingRes == true && isResistanceBuffed == false)
+        {
+            audioJoueurBuffingRes.Play();
+            joueurAnimator.SetBool("IsCasting", true);
+            yield return new WaitForSeconds(0.4f);
+            joueurAnimator.SetBool("IsCasting", false);
+            joueurResMod = joueurRes * 4f;
+            isBuffingRes = false;
+            isResistanceBuffed = true;
+        }
         StopCoroutine(Casting());
     }
 
@@ -173,11 +192,11 @@ public class Player : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(0.01f);
         joueurAnimator.SetBool("IsHit", false);
         // Le joueur se prend les dégâts
-        if (Ennemi.ennemiAtk - joueurRes <= 0)
+        if (Ennemi.ennemiAtk - joueurResMod <= 0)
             joueurPV--;
         else
         {
-            joueurPV -= (Ennemi.ennemiAtk - joueurRes);
+            joueurPV -= (Ennemi.ennemiAtk - joueurResMod);
             if (joueurPV <= 0f)
                 joueurPV = 0f;
         }

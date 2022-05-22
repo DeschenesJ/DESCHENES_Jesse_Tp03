@@ -77,6 +77,8 @@ public class GameManager : MonoBehaviour
                 Player.isPlayerAtk = false;
                 if (Player.isAttackBuffed == true)
                     StartCoroutine(Debuff());
+                if (Player.isResistanceBuffed == true)
+                    StartCoroutine(Debuff());
             }
             else if (Ennemi.isEnnemiAtk == true)
             {
@@ -189,9 +191,21 @@ public class GameManager : MonoBehaviour
     // Coroutine Debuff le joueur après qu'il ait attaqué avec un buff
     IEnumerator Debuff()
     {
-        yield return new WaitForSeconds(3f);
-        Player.isAttackBuffed = false;
-        Player.joueurAtkMod = Player.joueurAtk;
+        // Va debuff l'attaque
+        if (Player.isAttackBuffed == true)
+        {
+            yield return new WaitForSeconds(3f);
+            Player.isAttackBuffed = false;
+            Player.joueurAtkMod = Player.joueurAtk;
+        }
+
+        // Va debuff la résistance
+        if (Player.isResistanceBuffed == true)
+        {
+            yield return new WaitForSeconds(3f);
+            Player.isResistanceBuffed = false;
+            Player.joueurResMod = Player.joueurRes;
+        }
         StopCoroutine(Debuff());
     }
 }

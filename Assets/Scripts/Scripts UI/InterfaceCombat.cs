@@ -55,17 +55,34 @@ public class InterfaceCombat : MonoBehaviour
     // Methode pour le bouton qui va permettre au joueur de quintupler son attaque
     public void AttaquePlus()
     {
-        if (Player.isActing == true && Player.isBuffing == false && Player.isAttackBuffed == false)
+        if (Player.isActing == true && Player.isBuffingAtk == false && Player.isAttackBuffed == false)
         {
             Player.isActing = false;
-            Player.isBuffing = true;
+            Player.isBuffingAtk = true;
         }
+        else if (!Player.isActing == true)
+            Debug.Log("Vous avez déjà utiliser le buff d'atk");
         else
-            Debug.Log("Vous avez déjà utiliser le buff");
-
+            Debug.Log("Veuillez appuyer sur fin de tour");
+            
         
     }
 
+    public void ResistancePlus()
+    {
+        if (Player.isActing == true && Player.isBuffingRes == false && Player.isResistanceBuffed == false)
+        {
+            Player.isActing = false;
+            Player.isBuffingRes = true;
+
+        }
+        else if (!Player.isActing == true)
+            Debug.Log($"Vous avez déjà utilisé le buff de res");
+        
+        
+        
+    }
+    
 
     // Methode pour le bouton de fin de tour
     public void FinTour()
