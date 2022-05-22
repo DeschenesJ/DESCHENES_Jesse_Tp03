@@ -6,6 +6,7 @@ public class MenuPause : MonoBehaviour
 {
     public static bool isGamePaused = false;
     public GameObject menuPause;
+    public GameObject menuCombat;
 
     // Update is called once per frame
     void Update()
@@ -26,7 +27,8 @@ public class MenuPause : MonoBehaviour
         if(InterfaceTransition.isTimePaused == false)
             Time.timeScale = 1f;
         isGamePaused = false;
-
+        if(InterfaceTransition.isTimePaused == false)
+            menuCombat.SetActive(true);
     }
 
     void PauseGame()
@@ -34,7 +36,7 @@ public class MenuPause : MonoBehaviour
         menuPause.SetActive(true);
         Time.timeScale = 0f;
         isGamePaused = true;
-    
+        menuCombat.SetActive(false);
     
     }
 

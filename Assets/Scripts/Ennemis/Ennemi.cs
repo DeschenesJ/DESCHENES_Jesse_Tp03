@@ -9,7 +9,7 @@ public class Ennemi : MonoBehaviour, IDamageable
     public AudioSource audioEnnemiDeath;
     public AudioSource audioEnnemiAttack;
 
-    // Vatiable qui détermine si l'ennemi peut être vancu (il ne le peut pas s'il n'existe pas
+    // Vatiable qui détermine si l'ennemi peut être vancu (il ne le peut pas s'il n'existe pas)
     private bool isDefeatable;
 
     // l'animator de l'ennemi
@@ -53,7 +53,6 @@ public class Ennemi : MonoBehaviour, IDamageable
     void ennemiProperties()
     {
         // les pv, la résistance et l'a force d'attaque de l'ennemi varient selon la vague
-        
         if (GameManager.vagueCombat == 1)
         {
             ennemiPV = 20f;

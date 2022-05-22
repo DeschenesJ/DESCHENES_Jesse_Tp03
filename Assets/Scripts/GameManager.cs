@@ -44,13 +44,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         isSpawnTime = false;
-        //ennemi = FindObjectOfType<Ennemi>();
         vagueCombat = 1f;
         isPlayerTurn = true;
       //  isEnnemiTurn = false;
         isRoutineStarted = false;
-        // Va chercher l'animator du gameobject joueur et son script
-        //animatorJoueur = joueur.GetComponent<Animator>();
         scriptJoueur = joueur.GetComponent<Player>();
         
 
@@ -139,10 +136,6 @@ public class GameManager : MonoBehaviour
             EnnemiSpawn(ennemiPaladin);
         if (vagueCombat > 3 && vagueCombat <= 6)
             EnnemiSpawn(ennemiBoss);
-        //if (vagueCombat > 6 && vagueCombat < 10)
-        // EnnemiSpawn(EnnemiEncorePlusFort)
-        //if (vagueCombat == 10)
-        // EnnemiSpawn(LeBoss)
 
         isSpawnTime = false;
     }
@@ -155,9 +148,6 @@ public class GameManager : MonoBehaviour
         // détermine la cible de l'ennemi
         scriptEnnemi = objEnnemi.GetComponent<Ennemi>();
         isFightOn = true;
-        // Va chercher l'animator du gameobject de l'ennemi et son script
-        //animatorEnnemi = objEnnemi.GetComponent<Animator>();
-
     }
     // Méthode qui détermine si la partie se termine sur une victoire ou sur un échec
     void GameOver()
