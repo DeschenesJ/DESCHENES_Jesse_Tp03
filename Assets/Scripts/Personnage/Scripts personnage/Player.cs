@@ -38,7 +38,7 @@ public class Player : MonoBehaviour, IDamageable
         isDefeated = false;
 
         // Initialisation des Pv et de la résistance aux dégats du joueur
-        joueurPVMax = 50f;
+        joueurPVMax = 100f;
         joueurPV = joueurPVMax;
         joueurRes = joueurPVMax*0.1f;
         joueurAtk = 10f;
@@ -109,7 +109,7 @@ public class Player : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(0.01f);
         joueurAnimator.SetBool("IsHit", false);
         // Le joueur se prend les dégâts
-        if (Ennemi.ennemiAtk - joueurRes == 0)
+        if (Ennemi.ennemiAtk - joueurRes <= 0)
             joueurPV--;
         else
         {

@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     //Variable qui va déterminer si le prochain ennemi peut apparaître
     public static bool isSpawnTime;
+    // Variable qui détermine le skin de l'ennemi et possiblement les actions de l'ennemi
+    System.Random rnCheck = new System.Random();
     
     // Le menu de transition entre les combats
     public GameObject menuTransition;
@@ -21,6 +23,7 @@ public class GameManager : MonoBehaviour
     public Transform ennemiPositionner;
     // les types d'ennemies-----------------
     public GameObject ennemiPaladin;
+    public GameObject ennemiBrute;
     public GameObject ennemiBoss;
     //Le script de l'ennemi
     private Ennemi scriptEnnemi;
@@ -53,18 +56,15 @@ public class GameManager : MonoBehaviour
 
         // La position d'apparition de l'ennemi
         ennemiPositionner = ennemiPositionner.GetComponent<Transform>();
+        // Le premier ennemi en jeu est toujours le Paladin
         EnnemiSpawn(ennemiPaladin);
-        // Je vais faire une coroutine qui spawn les ennemis seulement au début du combat
-        // et dans cette coroutine je vais mettre une distance en x par rapport au spawner pour avoir plusieur ennemis.
-        // Ça ne devrait pas être compliqué, puisque les ennemis et encounters ne sont pas randoms et c'est un nombre fixe
-        // de combats avant le boss et le boss ou la mort du joueur termine la partie.
     }
 
     // Update is called once per frame
     void Update()
     {
         // Vérifie si l'ennemi dois apparaître
-        if (vagueCombat > 1 && isSpawnTime == true)
+        if (vagueCombat > 1 && isSpawnTime == true && vagueCombat < 11)
             Spawner();
 
         if (isFightOn == true && scriptEnnemi == true)
@@ -98,7 +98,9 @@ public class GameManager : MonoBehaviour
             if (Ennemi.ennemiAnimator == true)
             {
                 if (Ennemi.ennemiAnimator.GetBool("IsDefeated") == true)
-                { isFightOn = false;
+                {
+
+                    isFightOn = false;
                     //Ajouter une condition si je suis à la 10e vague
                     if (vagueCombat < 11)
                     {
@@ -106,7 +108,6 @@ public class GameManager : MonoBehaviour
                         StartCoroutine(Transition());
                         // Va détruire l'ennnemi s'il le trouve
                         Destroy(FindObjectOfType<Ennemi>().gameObject, 5f);
-                        
                     }
                     else
                     {
@@ -125,19 +126,28 @@ public class GameManager : MonoBehaviour
         //Le joueur reprend son tours
         isPlayerTurn = true;
         Player.isActing = true;
-
     }
 
     // Va servir à déterminer le type d'ennemi qui apparait
     void Spawner()
     {
-        Debug.Log("bonjour");
-        if (vagueCombat <= 3)
-            EnnemiSpawn(ennemiPaladin);
-        if (vagueCombat > 3 && vagueCombat <= 6)
-            EnnemiSpawn(ennemiBoss);
-
+        int checkSkin = rnCheck.Next(0, 101);
         isSpawnTime = false;
+        Debug.Log($"Le check est: {checkSkin}");
+        if (vagueCombat < 10 && vagueCombat > 1)
+        {
+            if (checkSkin <= 49)
+                EnnemiSpawn(ennemiPaladin);
+            else
+                EnnemiSpawn(ennemiBrute);
+        }
+        if (vagueCombat == 10)
+            EnnemiSpawn(ennemiBoss);
+        // Juste si le jeu continu après la vague 10 afin de ne pas causer de problème
+        if (vagueCombat > 10)
+            return;
+        
+
     }
 
     // Méthode pour faire apparaître les types d'ennemis
@@ -172,13 +182,6 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(6f);
         menuTransition.SetActive(true);
-    }
-    // Coroutine des combats va me permettre de faire apparaitre les mobs et possiblement faire les transitions entre les combats
-    public IEnumerator Spawn()
-    {
-        // Pour le moment c'est une valeur bidon que je retourne afin de ne pas avoir de problème de code
-        yield return new WaitForSeconds(0.001f);
-
     }
 
 }

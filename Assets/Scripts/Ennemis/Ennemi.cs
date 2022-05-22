@@ -35,6 +35,7 @@ public class Ennemi : MonoBehaviour, IDamageable
         isDefeatable = true;
         // Va chercher son propre animator afin de pouvoir l'utiliser pour lui faire jouer ses animations
         ennemiAnimator = GetComponent<Animator>();
+        Debug.Log(ennemiAnimator.GetBool("IsDefeated"));
         ennemiProperties();
 
     }
@@ -62,7 +63,7 @@ public class Ennemi : MonoBehaviour, IDamageable
         {
             //Détermine les Pv de l'ennemi entre chaque vague   
             ennemiPV = 20f + (5f * (GameManager.vagueCombat-1));
-            ennemiRes =  (5f * (GameManager.vagueCombat-1f));
+            ennemiRes = (5f * (GameManager.vagueCombat - 1f)) ;
         }
         ennemiAtk = 8f * GameManager.vagueCombat;
         Debug.Log($"Pv ennemi: {ennemiPV}; Res ennemi: {ennemiRes}");
@@ -121,7 +122,7 @@ public class Ennemi : MonoBehaviour, IDamageable
         if (ennemiPV <= 0 && isDefeatable)
         {
             
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(1.2f);
             ennemiAnimator.SetBool("IsDefeated", true);
             audioEnnemiDeath.Play();
             // Valeur de la vague du manager par défaite de l'ennemi

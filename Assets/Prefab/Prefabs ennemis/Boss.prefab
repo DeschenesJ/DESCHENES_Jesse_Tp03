@@ -670,7 +670,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 8315362a4274db8428bea10961741ef9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -797,7 +797,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5958818697037557720, guid: 5b8bbe059871e16428c999b53371a12b, type: 2}
   m_audioClip: {fileID: 8300000, guid: 630fa77295580024385473188a59d7c6, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
