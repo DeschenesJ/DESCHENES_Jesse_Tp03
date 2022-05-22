@@ -112,11 +112,11 @@ public class Ennemi : MonoBehaviour, IDamageable
         ennemiAnimator.SetBool("IsHit", false);
 
         // Le calcul des dégâts que l'ennemi subie
-        if (Player.joueurAtk - ennemiRes == 0)
+        if (Player.joueurAtkMod - ennemiRes == 0)
             ennemiPV--;
         else
         {
-            ennemiPV -= (Player.joueurAtk - ennemiRes);
+            ennemiPV -= (Player.joueurAtkMod - ennemiRes);
             if (ennemiPV <= 0f)
                 ennemiPV = 0f;
         }

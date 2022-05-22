@@ -32,6 +32,7 @@ public class InterfaceCombat : MonoBehaviour
         {
             Player.isActing = false;
             Player.isPlayerAtk = true;
+
         }
         else // Je vais le mettre dans le message d'update du combat manager
             Debug.Log(Player.isActing);
@@ -46,9 +47,25 @@ public class InterfaceCombat : MonoBehaviour
             Player.isHealing = true;
         
         }
-        Debug.Log("You don't need to heal");
+        else
+            Debug.Log("You don't need to heal");
 
     }
+
+    // Methode pour le bouton qui va permettre au joueur de quintupler son attaque
+    public void AttaquePlus()
+    {
+        if (Player.isActing == true && Player.isBuffing == false && Player.isAttackBuffed == false)
+        {
+            Player.isActing = false;
+            Player.isBuffing = true;
+        }
+        else
+            Debug.Log("Vous avez déjà utiliser le buff");
+
+        
+    }
+
 
     // Methode pour le bouton de fin de tour
     public void FinTour()
@@ -62,7 +79,7 @@ public class InterfaceCombat : MonoBehaviour
                 GameManager.isPlayerTurn = false;
                 isFinActive = false;
             }
-            if (GameManager.isPlayerTurn == false)
+            else if (GameManager.isPlayerTurn == false)
                 Debug.Log("Ce n'est pas votre tour");
         }
     }

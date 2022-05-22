@@ -75,6 +75,8 @@ public class GameManager : MonoBehaviour
             {
                 Ennemi.isEnnemiHit = true;
                 Player.isPlayerAtk = false;
+                if (Player.isAttackBuffed == true)
+                    StartCoroutine(Debuff());
             }
             else if (Ennemi.isEnnemiAtk == true)
             {
@@ -184,4 +186,12 @@ public class GameManager : MonoBehaviour
         menuTransition.SetActive(true);
     }
 
+    // Coroutine Debuff le joueur après qu'il ait attaqué avec un buff
+    IEnumerator Debuff()
+    {
+        yield return new WaitForSeconds(3f);
+        Player.isAttackBuffed = false;
+        Player.joueurAtkMod = Player.joueurAtk;
+        StopCoroutine(Debuff());
+    }
 }

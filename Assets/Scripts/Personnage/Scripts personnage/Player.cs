@@ -8,6 +8,8 @@ public class Player : MonoBehaviour, IDamageable
     //les variables audio du joueur
     public AudioSource audiosJoueurDeath;
     public AudioSource audioJoueurAttack;
+    public AudioSource audioJoueurHealing;
+    public AudioSource audioJoueurBuffing;
     // Pv du joueur
     public static float joueurPVMax;
     public static float joueurPV;
@@ -15,6 +17,12 @@ public class Player : MonoBehaviour, IDamageable
     public static float joueurRes;
     // La puissance d'attaque du joueur
     public static float joueurAtk;
+    // Inclus le modificatuer de dégâts
+    public static float joueurAtkMod;
+    // Variable qui détermine si le joueur multiplie son attaque
+    public static bool isBuffing;
+    // Variable qui s'active lorsque que le joueur augmente son attaque
+    public static bool isAttackBuffed;
     // Variable qui détermine si le joueur se fait toucher ou non
     public static bool isPlayerHit;
     // Variable qui détermine si le joueur attaque ou non
@@ -42,12 +50,16 @@ public class Player : MonoBehaviour, IDamageable
         joueurPV = joueurPVMax;
         joueurRes = joueurPVMax*0.1f;
         joueurAtk = 10f;
-
+        joueurAtkMod = joueurAtk;
+        
+        // Initialisation des variables booléennes du joueur
         //Lorsque isActing est false l'interface de combat va empêcher le joueur d'interagir avec ses boutons d'actions, sauf pour le bouton de passer le tour
         isActing = true;
         isPlayerHit = false;
         isPlayerAtk = false;
         isHealing = false;
+        isBuffing = false;
+        isAttackBuffed = false;
         // Assigne l'animator du joueur pour ses animations de combat
         joueurAnimator = GetComponent<Animator>();
 
@@ -63,7 +75,9 @@ public class Player : MonoBehaviour, IDamageable
             if (joueurPV <= 0)
                StartCoroutine(Defeat());
             if (isHealing)
-               StartCoroutine(Healing());
+               StartCoroutine(Casting());
+            if (isBuffing)
+                StartCoroutine(Casting());
         }
 
     }
@@ -78,6 +92,8 @@ public class Player : MonoBehaviour, IDamageable
             isPlayerHit = isHit;
         }
     }
+
+    
 
     // Méthode qui détermine si le joueur est vaincu
     IEnumerator Defeat()
@@ -95,39 +111,58 @@ public class Player : MonoBehaviour, IDamageable
     // Coroutine pour l'animation d'attaque
     IEnumerator Attack()
     {
+        Debug.Log($"Attaque du joueur : {joueurAtkMod}");
         joueurAnimator.SetBool("IsAttacking", true);
         yield return new WaitForSeconds(0.4f);
         audioJoueurAttack.Play();
         joueurAnimator.SetBool("IsAttacking", false);
         Debug.Log("Vous devez Passer votre tour");
+        //if (isAttackBuffed == true)
+        //{
+        //    joueurAtkMod = joueurAtk;
+        //    isAttackBuffed = false;
+        //}
         StopCoroutine(Attack());
 
     }
 
-    // Coroutine pour l'animation de soins du joueur
-    IEnumerator Healing()
+    // Coroutine pour l'animation de soins du joueur et autre cast
+    IEnumerator Casting()
     {
-        //int JoueurPv = (int)joueurPV;
-        //Debug.Log(JoueurPv);
-        joueurAnimator.SetBool("IsCasting", true);
-        yield return new WaitForSeconds(0.4f);
-        joueurAnimator.SetBool("IsCasting", false);
-        // Le joueur se soinge s'il a perdu de la vie
-        if(joueurPV < joueurPVMax)
+        // Lorsque le joueur se soigne
+        if (isHealing == true)
         {
-            joueurPV += joueurPVMax * 0.2f;
-            if (joueurPV >= joueurPVMax)
-                joueurPV = joueurPVMax;
+            joueurAnimator.SetBool("IsCasting", true);
+            //audio de soins
+            audioJoueurHealing.Play();
+            yield return new WaitForSeconds(0.4f);
+            joueurAnimator.SetBool("IsCasting", false);
 
-
-           
-
+            // Le joueur se soinge s'il a perdu de la vie
+            if (joueurPV < joueurPVMax)
+            {
+                joueurPV += joueurPVMax * 0.2f;
+                //Le joueur ne peut pas dépasser ses Pv max
+                if (joueurPV >= joueurPVMax)
+                    joueurPV = joueurPVMax;
+            }
+            isHealing = false;
+            Debug.Log(joueurPV);
         }
-        isHealing = false;
-        Debug.Log(joueurPV);
-        StopCoroutine(Healing());
 
+        // lorsque le joueur buff son attaque
+        if (isBuffing == true && isAttackBuffed == false)
+        {
+            joueurAnimator.SetBool("IsCasting", true);
+            audioJoueurBuffing.Play();
+            yield return new WaitForSeconds(0.4f);
+            joueurAnimator.SetBool("IsCasting", false);
+            joueurAtkMod = joueurAtk * 5f;
+            isBuffing = false;
+            isAttackBuffed = true;
+        }
 
+        StopCoroutine(Casting());
     }
 
     // Coroutine pour l'animation lorsque le joueur se prende des dégâts
