@@ -81,12 +81,6 @@ public class GameManager : MonoBehaviour
                 if (Player.isResistanceBuffed == true)
                     StartCoroutine(Debuff());
             }
-            //else if (Ennemi.isEnnemiAtk == true)
-            //{
-            //    Player.isPlayerHit = true;
-            //    Ennemi.isEnnemiAtk = false;
-            //    //PlayerTurnRestored();
-            //}
 
             // va vérifier si quelqu'un se prend des dégâts
             if (Player.isPlayerHit == true)

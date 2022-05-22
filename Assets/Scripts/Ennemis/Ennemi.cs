@@ -17,6 +17,9 @@ public class Ennemi : MonoBehaviour, IDamageable
 
     // Les Pv de l'ennemi
     public static float ennemiPV;
+    public static float ennemiPVMax;
+    public float EnnemiPV { get { return ennemiPV; } }
+    public float EnnemiPVMax { get { return ennemiPVMax ; } }
     // La résistance de l'ennemi
     public static float ennemiRes;
     // La puissance d'attaque de l'ennemi
@@ -40,6 +43,7 @@ public class Ennemi : MonoBehaviour, IDamageable
         ennemiAnimator = GetComponent<Animator>();
         Debug.Log(ennemiAnimator.GetBool("IsDefeated"));
         ennemiProperties();
+        FindObjectOfType<UI_Manager>().UIupdatePV(FindObjectOfType<UI_Manager>().txt_PvEnnemi, ennemiPV, ennemiPVMax);
 
     }
 
@@ -59,15 +63,17 @@ public class Ennemi : MonoBehaviour, IDamageable
         // les pv, la résistance et l'a force d'attaque de l'ennemi varient selon la vague
         if (GameManager.vagueCombat == 1)
         {
-            ennemiPV = 20f;
+            ennemiPVMax = 20f;
             ennemiRes = 0f;
         }
         else
         {
+            ennemiPVMax = 20f;
             //Détermine les Pv de l'ennemi entre chaque vague   
-            ennemiPV = 20f + (5f * (GameManager.vagueCombat - 1));
+            ennemiPVMax = ennemiPVMax + (5f * (GameManager.vagueCombat - 1));
             ennemiRes = (5f * (GameManager.vagueCombat - 1f));
         }
+        ennemiPV = ennemiPVMax;
         ennemiAtk = 8f * GameManager.vagueCombat;
         Debug.Log($"Pv ennemi: {ennemiPV}; Res ennemi: {ennemiRes}");
 
@@ -134,6 +140,8 @@ public class Ennemi : MonoBehaviour, IDamageable
             if (ennemiPV <= 0f)
                 ennemiPV = 0f;
         }
+        // Va mettre à jour la vie de l'ennemi à l'écran
+        FindObjectOfType<UI_Manager>().UIupdatePV(FindObjectOfType<UI_Manager>().txt_PvEnnemi, ennemiPV, ennemiPVMax);
         if (ennemiPV <= 0 && isDefeatable)
         {
 
@@ -142,10 +150,8 @@ public class Ennemi : MonoBehaviour, IDamageable
             audioEnnemiDeath.Play();
             // Valeur de la vague du manager par défaite de l'ennemi
             GameManager.vagueCombat++;
-            Debug.Log($"Voici le combat {GameManager.vagueCombat}");
             isDefeatable = false;
         }
-        Debug.Log($"Pv Ennemi: {ennemiPV}");
         StopCoroutine(AnimDegats());
     }
 }

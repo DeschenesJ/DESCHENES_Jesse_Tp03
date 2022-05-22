@@ -13,6 +13,8 @@ public class UI_Manager : MonoBehaviour
 
     // Les valeur modifiables des UI notemment le UI de combat
     public Text txt_turn;
+    public Text txt_PvJoueur;
+    public Text txt_PvEnnemi;
 
     // Variable qqui vérifie si la partie est terminée
     bool isGameOver;
@@ -29,6 +31,7 @@ public class UI_Manager : MonoBehaviour
         menuGameOver.SetActive(false);
         // Par défaut c'est le tour du joueur
         UImessages(txt_turn, 0);
+        UIupdatePV(txt_PvJoueur, Player.joueurPV, Player.joueurPVMax);
     }
 
     // Update is called once per frame
@@ -53,9 +56,9 @@ public class UI_Manager : MonoBehaviour
         }
 
     }
-    
+
     // Méthode qui détermine ce qui est affiché à l'écran comme message
-    public void UImessages(Text txt_UI , int msgCheck)
+    public void UImessages(Text txt_UI, int msgCheck)
     {
         // Si c'et le tour du joueur (msgCheck == 0)
         if (msgCheck == 0)
@@ -80,8 +83,14 @@ public class UI_Manager : MonoBehaviour
         if (msgCheck == 3)
         {
             txt_UI.text = "Félicitation! Vous êtes nul";
+            txt_UI.color = Color.red;
             return;
         }
+    }
 
+    //Méthode qui met à jour les Pv du joueur ou de l'ennemi
+    public void UIupdatePV(Text txt_UI, float valActive, float valMax)
+    {
+        txt_UI.text = $"{valActive} / {valMax}";
     }
 }

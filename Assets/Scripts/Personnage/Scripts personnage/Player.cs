@@ -122,15 +122,10 @@ public class Player : MonoBehaviour, IDamageable
     // Coroutine pour l'animation d'attaque
     IEnumerator Attack()
     {
-        Debug.Log($"Attaque du joueur : {joueurAtkMod}");
-        Debug.Log($"Résistance du joueur : {joueurResMod}");
         joueurAnimator.SetBool("IsAttacking", true);
         yield return new WaitForSeconds(0.4f);
         audioJoueurAttack.Play();
         joueurAnimator.SetBool("IsAttacking", false);
-        // Dit au UI manager d'updater les messages d'interactions
-        
-        //
         Debug.Log("Vous devez Passer votre tour");
         StopCoroutine(Attack());
 
@@ -156,8 +151,9 @@ public class Player : MonoBehaviour, IDamageable
                 if (joueurPV >= joueurPVMax)
                     joueurPV = joueurPVMax;
             }
+            // Va mettre à jour la vie de l'ennemi à l'écran
+            FindObjectOfType<UI_Manager>().UIupdatePV(FindObjectOfType<UI_Manager>().txt_PvJoueur, joueurPV, joueurPVMax);
             isHealing = false;
-            Debug.Log(joueurPV);
         }
 
         // lorsque le joueur buff son attaque
@@ -208,7 +204,8 @@ public class Player : MonoBehaviour, IDamageable
             {
                 isResistanceBuffed = false;
             }
-            Debug.Log($"Pv Joueur: {joueurPV}");
+            // Va mettre à jour la vie du joueur à l'écran
+            FindObjectOfType<UI_Manager>().UIupdatePV(FindObjectOfType<UI_Manager>().txt_PvJoueur, joueurPV, joueurPVMax);
         }
         StopCoroutine(AnimDamage());
     }
