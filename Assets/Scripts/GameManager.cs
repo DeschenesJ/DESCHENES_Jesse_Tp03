@@ -166,17 +166,9 @@ public class GameManager : MonoBehaviour
         StopAllCoroutines();
         isFightOn = false;
         if (Player.joueurAnimator.GetBool("IsDefeated") == true)
-        {
-            Debug.Log("vous avez perdu");
             UI_GameOver.isGameOver = true;
-            //open scene accueil
-        }
         else if (vagueCombat == 11)
-        {
-            Debug.Log("Vous avez gagnez!");
             UI_GameOver.isGameOver = true;
-            //open scene Accueil
-        }
         
     }
 

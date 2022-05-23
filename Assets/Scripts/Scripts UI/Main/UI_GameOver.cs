@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UI_GameOver : MonoBehaviour
 {
@@ -17,26 +18,15 @@ public class UI_GameOver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (isGameOver == true && Player.isDefeated == true)
-        {
-
             StartCoroutine(openGameOverDelay());
-            //menuGameOver.SetActive(true);
-            //FindObjectOfType<UI_Manager>().UImessages(txt_GameOver, 3);
-            //Time.timeScale = 0f;
-        }
-
-
     }
 
     // Méthode du bouton de retour à l'accueil
     public void Quitter()
-    { 
+    {
         //Charger la scène d'accueil
-        
-        
-        
+        SceneManager.LoadScene("Accueil");
     }
 
     // Coroutine pour ouvrir le menu gameOver avec un délais

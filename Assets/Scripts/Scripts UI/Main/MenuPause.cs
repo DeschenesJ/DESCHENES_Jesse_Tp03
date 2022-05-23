@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MenuPause : MonoBehaviour
 {
@@ -52,10 +53,8 @@ public class MenuPause : MonoBehaviour
 
     //Méthode pour le bouton Quitter
     public void Quitter()
-    { 
-    
-    
-    
+    {
+        SceneManager.LoadScene("Accueil");
     }
 
 }
