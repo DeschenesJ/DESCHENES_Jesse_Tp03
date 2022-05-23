@@ -60,6 +60,11 @@ public class GameManager : MonoBehaviour
         ennemiPositionner = ennemiPositionner.GetComponent<Transform>();
         // Le premier ennemi en jeu est toujours le Paladin
         EnnemiSpawn(ennemiPaladin);
+
+        #if !UNITY_EDITOR && UNITY_WEBGL
+        UnityEngine.WebGLInput.captureAllKeyboardInput = false;
+        #endif
+
     }
 
     // Update is called once per frame
