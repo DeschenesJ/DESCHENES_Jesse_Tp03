@@ -172,7 +172,7 @@ public class GameManager : MonoBehaviour
         isFightOn = false;
         if (Player.joueurAnimator.GetBool("IsDefeated") == true)
             UI_GameOver.isGameOver = true;
-        else if (vagueCombat == 11)
+        if (vagueCombat == 11)
             UI_GameOver.isGameOver = true;
         
     }

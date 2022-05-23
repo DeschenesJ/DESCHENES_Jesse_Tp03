@@ -56,7 +56,7 @@ public class Player : MonoBehaviour, IDamageable
         joueurPVMax = 100f;
         joueurPV = joueurPVMax;
         joueurRes = joueurPVMax*0.1f;
-        joueurAtk = 10f;
+        joueurAtk = 15f;
         joueurAtkMod = joueurAtk;
         joueurResMod = joueurRes;
         

@@ -20,6 +20,8 @@ public class UI_GameOver : MonoBehaviour
     {
         if (isGameOver == true && Player.isDefeated == true)
             StartCoroutine(openGameOverDelay());
+        if (isGameOver == true && GameManager.vagueCombat == 11)
+            StartCoroutine(openGameOverDelay());
     }
 
     // Méthode du bouton de retour à l'accueil
@@ -34,7 +36,10 @@ public class UI_GameOver : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         menuGameOver.SetActive(true);
-        FindObjectOfType<UI_Manager>().UImessages(txt_GameOver, 3);
+        if(Player.isDefeated == true)
+            FindObjectOfType<UI_Manager>().UImessages(txt_GameOver, 3);
+        else
+            FindObjectOfType<UI_Manager>().UImessages(txt_GameOver, 4);
         Time.timeScale = 0f;
         StopCoroutine(openGameOverDelay());
     }
