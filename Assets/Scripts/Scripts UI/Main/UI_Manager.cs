@@ -10,6 +10,7 @@ public class UI_Manager : MonoBehaviour
     public GameObject menuCombat;
     public GameObject menuTransition;
     public GameObject menuGameOver;
+    public GameObject menuAudio;
 
     // Les valeur modifiables des UI notemment le UI de combat
     public Text txt_turn;
@@ -29,6 +30,7 @@ public class UI_Manager : MonoBehaviour
         menuPause.SetActive(false);
         menuTransition.SetActive(false);
         menuGameOver.SetActive(false);
+        menuAudio.SetActive(false);
         // Par défaut c'est le tour du joueur
         UImessages(txt_turn, 0);
         UIupdatePV(txt_PvJoueur, Player.joueurPV, Player.joueurPVMax);
@@ -54,6 +56,7 @@ public class UI_Manager : MonoBehaviour
             menuTransition.SetActive(false);
             isGameOver = true;
         }
+
 
     }
 

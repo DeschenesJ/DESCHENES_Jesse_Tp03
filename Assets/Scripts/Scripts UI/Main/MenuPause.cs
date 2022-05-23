@@ -9,11 +9,13 @@ public class MenuPause : MonoBehaviour
     public static bool isGamePaused = false;
     public GameObject menuPause;
     public GameObject menuCombat;
+    // Variable qui détermine si le menu audio est ouvert
+    public static bool isAudioOpen;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P) && UI_GameOver.isGameOver == false)
+        if (Input.GetKeyDown(KeyCode.P) && UI_GameOver.isGameOver == false && isAudioOpen == false)
         {
             if (isGamePaused)
                 ResumeGame();
@@ -47,7 +49,7 @@ public class MenuPause : MonoBehaviour
     //Méthode pour le bouton du menu audio
     public void MenuAudio()
     {
-
+        isAudioOpen = true;
 
     }
 
