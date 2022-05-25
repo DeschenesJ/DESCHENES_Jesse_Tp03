@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TopDown_Camera : MonoBehaviour
 {
+    // PROF: Merci de l'avis
     /// <summary>
     /// Le code me provient de https://www.youtube.com/c/IndiePixel3D/search?query=unity%20camera
     /// </summary>
