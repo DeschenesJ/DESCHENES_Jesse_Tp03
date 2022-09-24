@@ -18,10 +18,7 @@ public class UI_Accueil : MonoBehaviour
         menuInformation.SetActive(false);
         menuAudio.SetActive(false);
 
-        #if !UNITY_EDITOR && UNITY_WEBGL
-        UnityEngine.WebGLInput.captureAllKeyboardInput = false;
-        #endif
-
+        
 
     }
 

@@ -61,9 +61,7 @@ public class GameManager : MonoBehaviour
         // Le premier ennemi en jeu est toujours le Paladin
         EnnemiSpawn(ennemiPaladin);
 
-        #if !UNITY_EDITOR && UNITY_WEBGL
-        UnityEngine.WebGLInput.captureAllKeyboardInput = false;
-        #endif
+       
 
     }
 
